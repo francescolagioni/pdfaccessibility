@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Word for Mac declares the wrong language in the PDF</title>
+<meta name="description" content="Word for Mac's accessible PDF export is excellent, but in our test it declared English for an Italian document. How to spot the wrong language and fix it.">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="style.css">
+<link rel="alternate" hreflang="en" href="word-pdf-wrong-language.html">
+<link rel="alternate" hreflang="it" href="it/word-pdf-wrong-language.html">
+<link rel="alternate" hreflang="x-default" href="word-pdf-wrong-language.html">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="site-header">
+<div class="wrap header-inner">
+<a class="brand" href="index.html">PDF Accessibility Checker</a>
+<nav aria-label="Main">
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="guide.html">Guide</a></li>
+<li><a href="articles.html" aria-current="page">Articles</a></li>
+<li><a href="support.html">Support</a></li>
+<li><a href="privacy.html">Privacy</a></li>
+<li class="lang"><a href="it/word-pdf-wrong-language.html" hreflang="it" lang="it" aria-label="Leggi questa pagina in italiano">Italiano</a></li>
+</ul>
+</nav>
+</div>
+</header>
+<main id="main" tabindex="-1">
+<div class="wrap">
+<article>
+<h1>Word for Mac declares the wrong language in the PDF</h1>
+<p class="meta">Tested in October 2026 on macOS 27.</p>
+<p class="lead">Microsoft Word for Mac can produce a very good accessible PDF. In our test it did almost everything right, except one detail that is easy to miss: it declared the wrong language.</p>
+
+<h2>How we tested</h2>
+<p>We wrote a fictitious sample document in Italian with headings, a bulleted list, a table with a header row, two images (one with alternative text, one without) and a link. Word’s interface was in English. We saved it as PDF in three ways and inspected each file with PDF Accessibility Checker, with veraPDF and by reading the PDF structure directly. These results describe this sample, this Word version and macOS 27; your results may differ.</p>
+
+<h2>The good news: an excellent tagged PDF</h2>
+<p>With File &gt; Save As &gt; PDF and the option “Best for electronic distribution and accessibility”, Word produced a well-structured tagged PDF:</p>
+<ul>
+<li>a Document tag containing H1 and H2 headings;</li>
+<li>a real list, with L, LI, Lbl and LBody tags;</li>
+<li>a real table, with Table, THead, TBody, TR, TH and TD;</li>
+<li>Figure tags for the images;</li>
+<li>XMP metadata with the title (dc:title) and the DisplayDocTitle setting, so viewers show the title instead of the file name.</li>
+</ul>
+<p>The remaining issues were small and expected: the image without alternative text (correctly reported, since we left it out on purpose), table header cells (TH) without a Scope attribute, and no PDF/UA identifier in the metadata.</p>
+<p>Note that this option uses Microsoft’s online service to create the PDF, so the document is processed outside your Mac. Keep this in mind for confidential documents.</p>
+
+<h2>The problem: Lang = “en” for an Italian document</h2>
+<p>The PDF declared its language as English (Lang = “en”), although every word in it was Italian. The declared language matched the language of Word’s interface, not the language of the document.</p>
+<p>Why does it matter? Screen readers use the declared language to choose the voice and the pronunciation rules. An Italian text read with English rules becomes hard or impossible to understand. Braille displays and translation tools rely on the language too. And because the PDF does declare a language, a basic check that only looks for “is there a language?” will report no problem.</p>
+
+<h2>The other export options are not accessible</h2>
+<ul>
+<li><strong>“Best for printing”</strong> produced a PDF with no tags at all.</li>
+<li><strong>File &gt; Print &gt; Save as PDF</strong> (the macOS print panel) also produced an untagged PDF. In addition, it wrote the Mac user’s name into the Author field of the PDF, which you may not want in a published document.</li>
+</ul>
+
+<h2>How to fix it in Word</h2>
+<ol>
+<li>Select all the text (Command-A) and choose Tools &gt; Language. Pick the correct language for the document and confirm.</li>
+<li>If the document mixes languages, select each passage in another language and set its language the same way.</li>
+<li>Set the title in File &gt; Properties.</li>
+<li>Save again with File &gt; Save As &gt; PDF and “Best for electronic distribution and accessibility”.</li>
+<li>Check the result.</li>
+</ol>
+
+<h2>How the app detects the mismatch</h2>
+<p>PDF Accessibility Checker compares the declared language with the language of the text. It takes a sample of pages, extracts the text and asks Apple’s NaturalLanguage framework which language it is. It reports a mismatch only when the detection has high confidence and there is enough text to judge: a document with a few words, or one that mixes languages evenly, is not flagged. When it does find a mismatch, it shows a warning such as “The declared language is not the language of the text”.</p>
+
+<h2>How PDF Accessibility Checker helps</h2>
+<p>The app finds the wrong language that other checks miss, and explains how to correct it in Word. With Pro, it can also set the language for you: it proposes the language detected from the text, writes it into a new file named <code>name-accessible.pdf</code> next to the original, and checks the new file again. It can also remove the author and document metadata, such as the author name added by the print panel. <a href="index.html">Learn more about PDF Accessibility Checker</a>.</p>
+</article>
+</div>
+</main>
+<footer class="site-footer">
+<div class="wrap">
+<p class="disclaimer">PDF Accessibility Checker helps you check the accessibility of PDF files. It does not certify legal conformance with any law or standard.</p>
+<p><a href="privacy.html">Privacy policy</a> · <a href="support.html">Support and FAQ</a></p>
+<p>© 2026 Corrado Lagioni.</p>
+</div>
+</footer>
+</body>
+</html>

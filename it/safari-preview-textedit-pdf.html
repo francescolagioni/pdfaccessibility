@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PDF da Safari, Anteprima e TextEdit: sono accessibili?</title>
+<meta name="description" content="Che cosa producono gli strumenti integrati in macOS quando creano un PDF: TextEdit e Safari creano PDF senza tag, Anteprima mantiene i tag esistenti, le scansioni sono immagini. Risultati e metodo.">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="../style.css">
+<link rel="alternate" hreflang="en" href="../safari-preview-textedit-pdf.html">
+<link rel="alternate" hreflang="it" href="safari-preview-textedit-pdf.html">
+<link rel="alternate" hreflang="x-default" href="../safari-preview-textedit-pdf.html">
+</head>
+<body>
+<a class="skip" href="#main">Vai al contenuto principale</a>
+<header class="site-header">
+<div class="wrap header-inner">
+<a class="brand" href="index.html">PDF Accessibility Checker</a>
+<nav aria-label="Principale">
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="guide.html">Guida</a></li>
+<li><a href="articles.html" aria-current="page">Articoli</a></li>
+<li><a href="support.html">Supporto</a></li>
+<li><a href="privacy.html">Privacy</a></li>
+<li class="lang"><a href="../safari-preview-textedit-pdf.html" hreflang="en" lang="en" aria-label="Read this page in English">English</a></li>
+</ul>
+</nav>
+</div>
+</header>
+<main id="main" tabindex="-1">
+<div class="wrap">
+<article>
+<h1>PDF da Safari, Anteprima e TextEdit: sono accessibili?</h1>
+<p class="meta">Test svolto a ottobre 2026 su macOS 27.</p>
+<p class="lead">macOS permette di creare un PDF da quasi tutto. Ma un PDF che sembra corretto non è necessariamente leggibile da uno screen reader. Ecco che cosa producono gli strumenti integrati.</p>
+
+<h2>Come abbiamo fatto il test</h2>
+<p>Abbiamo usato un documento di esempio fittizio con titoli, un elenco, una tabella con riga di intestazione, due immagini (una con testo alternativo, una senza) e un link, ed esaminato i PDF ottenuti con PDF Accessibility Checker e leggendone direttamente la struttura.</p>
+<div class="note">
+<p><strong>Nota sul metodo.</strong> TextEdit è stato provato con il suo comando Esporta come PDF. Safari e Anteprima non si potevano automatizzare su macOS 27, quindi i loro risultati vengono dai motori su cui si basano e non dai menu delle app: per Safari, l’operazione di stampa WebKit di una WKWebView (lo stesso motore che Safari usa per stampare in PDF); per Anteprima, il framework PDFKit di Apple, anche per il caso della scansione trasformata in PDF. Ci aspettiamo che le app diano gli stessi risultati, ma un’esportazione manuale dalle app dovrebbe confermarlo.</p>
+</div>
+
+<h2>TextEdit: Esporta come PDF</h2>
+<p>Il comando File &gt; Esporta come PDF di TextEdit ha prodotto un PDF senza tag. Non c’è alcuna struttura: né titoli, né elenco, né tabella, niente che dica a uno screen reader che cosa sia il contenuto. Il testo si può estrarre, ma solo come un flusso piatto.</p>
+
+<h2>Safari: stampa in PDF</h2>
+<p>Anche il motore WebKit, stampando in PDF la nostra pagina di esempio, ha prodotto un PDF senza tag. Anche quando la pagina web è ben strutturata – con veri titoli, elenchi e attributi alt sulle immagini – niente di questa struttura arriva nel PDF. Inoltre:</p>
+<ul>
+<li>i link erano presenti come aree cliccabili ma senza descrizione, quindi uno screen reader non può annunciare dove portano;</li>
+<li>mancava l’impostazione Tabs, che dice alle tecnologie assistive di spostarsi tra link e campi seguendo l’ordine della struttura.</li>
+</ul>
+<p>Se vuoi condividere una pagina web in modo accessibile, di solito è meglio condividere la pagina stessa (l’indirizzo) che un suo PDF.</p>
+
+<h2>Anteprima: salvare di nuovo un PDF con tag</h2>
+<p>Qui c’è una buona notizia: salvare di nuovo con PDFKit un PDF che ha già i tag li ha mantenuti intatti. Se apri un PDF accessibile per aggiungere una nota, ruotare o riordinare le pagine, non dovresti distruggerne la struttura. Ma PDFKit non migliora nulla: non può aggiungere tag, impostare la lingua del documento o scrivere il titolo nei metadati XMP. Un PDF che non era accessibile prima del salvataggio non lo è neanche dopo.</p>
+
+<h2>Scansioni trasformate in PDF</h2>
+<p>Una pagina scansionata e salvata in PDF tramite PDFKit è solo un’immagine: non contiene testo. Uno screen reader non trova niente da leggere, e non si può cercare né copiare il contenuto. Per renderla accessibile bisogna prima riconoscere il testo con l’OCR (riconoscimento ottico dei caratteri) e poi aggiungere i tag al documento. Meglio ancora, recupera il documento digitale originale ed esportalo nel modo corretto.</p>
+
+<h2>Che cosa usare invece</h2>
+<ul>
+<li>Per i documenti di testo, usa un programma di videoscrittura con esportazione PDF accessibile. Nei nostri test <a href="word-pdf-wrong-language.html">l’esportazione accessibile di Word per Mac</a> ha funzionato bene, a parte la lingua dichiarata.</li>
+<li>Pages produce i tag, ma con problemi seri: vedi <a href="pages-pdf-accessibility.html">perché il PDF esportato da Pages non è accessibile</a>.</li>
+<li>Per i documenti impaginati, usa Adobe InDesign con l’esportazione di PDF con tag.</li>
+<li>Usa Anteprima per visualizzare, annotare e riorganizzare i PDF, sapendo che conserva l’accessibilità ma non la crea.</li>
+</ul>
+
+<h2>Come ti aiuta PDF Accessibility Checker</h2>
+<p>L’app ti dice subito se un PDF ha i tag, se i link hanno una descrizione, se l’impostazione Tabs è presente e se nella pagina c’è del testo. La vista Screen reader mostra che cosa troveranno le tecnologie assistive – o che non troveranno nulla. Con Pro puoi controllare in un colpo solo un’intera cartella di PDF per trovare quelli che richiedono attenzione. <a href="index.html">Scopri PDF Accessibility Checker</a>.</p>
+</article>
+</div>
+</main>
+<footer class="site-footer">
+<div class="wrap">
+<p class="disclaimer">PDF Accessibility Checker aiuta a controllare l'accessibilità dei file PDF. Non certifica la conformità legale a nessuna norma o standard.</p>
+<p><a href="privacy.html">Informativa sulla privacy</a> · <a href="support.html">Supporto e domande frequenti</a></p>
+<p>© 2026 Corrado Lagioni.</p>
+</div>
+</footer>
+</body>
+</html>

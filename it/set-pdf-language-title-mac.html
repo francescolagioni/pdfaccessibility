@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Come impostare lingua e titolo di un PDF su Mac</title>
+<meta name="description" content="Perché un PDF ha bisogno di lingua e titolo, e come impostarli su Mac con Word, Pages, InDesign, Anteprima e PDF Accessibility Checker.">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="../style.css">
+<link rel="alternate" hreflang="en" href="../set-pdf-language-title-mac.html">
+<link rel="alternate" hreflang="it" href="set-pdf-language-title-mac.html">
+<link rel="alternate" hreflang="x-default" href="../set-pdf-language-title-mac.html">
+</head>
+<body>
+<a class="skip" href="#main">Vai al contenuto principale</a>
+<header class="site-header">
+<div class="wrap header-inner">
+<a class="brand" href="index.html">PDF Accessibility Checker</a>
+<nav aria-label="Principale">
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="guide.html">Guida</a></li>
+<li><a href="articles.html" aria-current="page">Articoli</a></li>
+<li><a href="support.html">Supporto</a></li>
+<li><a href="privacy.html">Privacy</a></li>
+<li class="lang"><a href="../set-pdf-language-title-mac.html" hreflang="en" lang="en" aria-label="Read this page in English">English</a></li>
+</ul>
+</nav>
+</div>
+</header>
+<main id="main" tabindex="-1">
+<div class="wrap">
+<article>
+<h1>Come impostare lingua e titolo di un PDF su Mac</h1>
+<p class="meta">Aggiornato a ottobre 2026, macOS 27.</p>
+<p class="lead">Due dei problemi di accessibilità più comuni nei PDF sono anche tra i più facili da risolvere: la lingua del documento mancante e il titolo mancante. Ecco perché contano e come impostarli con gli strumenti che probabilmente hai sul Mac.</p>
+
+<h2>Perché contano</h2>
+<ul>
+<li><strong>Lingua.</strong> Gli screen reader usano la lingua dichiarata per scegliere la voce e la pronuncia. Se manca, o è sbagliata, un documento può diventare difficile da capire: un testo italiano letto con la voce inglese è un buon esempio.</li>
+<li><strong>Titolo.</strong> Il titolo è la prima cosa che uno screen reader annuncia quando il documento si apre. Senza titolo, si sente il nome del file.</li>
+<li><strong>Titolo della finestra.</strong> Un’impostazione chiamata DisplayDocTitle dice ai lettori PDF di mostrare il titolo, non il nome del file, nella barra della finestra e nell’elenco delle finestre aperte. PDF/UA la richiede.</li>
+</ul>
+
+<h2>Microsoft Word per Mac</h2>
+<ul>
+<li>Titolo: File &gt; Proprietà &gt; Titolo.</li>
+<li>Lingua: seleziona il testo e scegli Strumenti &gt; Lingua. Fallo per l’intero documento e per gli eventuali passaggi in un’altra lingua.</li>
+<li>Esporta con File &gt; Salva con nome &gt; PDF e “Ottimale per la distribuzione elettronica e l’accessibilità”. Nei nostri test questa opzione ha scritto il titolo nei metadati XMP e impostato DisplayDocTitle. Controlla però la lingua: nel nostro test Word ha dichiarato la lingua dell’interfaccia invece di quella del documento (vedi <a href="word-pdf-wrong-language.html">Word per Mac dichiara la lingua sbagliata</a>).</li>
+</ul>
+
+<h2>Pages</h2>
+<p>Pages non permette di impostare né l’una né l’altro. Nei nostri test l’esportazione con File &gt; Esporta come &gt; PDF non ha mai dichiarato la lingua del documento né scritto un titolo nei metadati XMP, e mancava DisplayDocTitle. Devi impostarli dopo, con un altro strumento. Vedi anche <a href="pages-pdf-accessibility.html">perché il PDF esportato da Pages non è accessibile</a>.</p>
+
+<h2>Adobe InDesign</h2>
+<ul>
+<li>Titolo: File &gt; Info file (File Info), poi compila il titolo del documento.</li>
+<li>Nella finestra Esporta Adobe PDF, sezione Avanzate, imposta Mostra titolo (Display Title) su “Titolo documento”. Così viene impostato DisplayDocTitle.</li>
+<li>Lingua: impostala negli stili di paragrafo e di carattere (e su ogni testo in un’altra lingua), così viene scritta nei tag.</li>
+<li>Esporta con l’opzione Crea PDF con tag attiva.</li>
+</ul>
+
+<h2>Anteprima</h2>
+<p>Anteprima si basa sul framework PDFKit di Apple. Nei nostri test, salvare di nuovo un PDF con tag tramite PDFKit ha mantenuto intatti i tag esistenti: una buona notizia se devi solo annotare o riordinare le pagine. Ma PDFKit non offre alcun modo per impostare la lingua del documento. Può scrivere un titolo, ma solo nel vecchio dizionario Info, non nei metadati XMP richiesti da PDF/UA, e non imposta DisplayDocTitle.</p>
+
+<h2>PDF Accessibility Checker</h2>
+<p>Con la versione Pro l’app imposta entrambi:</p>
+<ul>
+<li>propone la lingua del documento a partire dal testo, con il framework NaturalLanguage di Apple;</li>
+<li>scrive il titolo sia nel dizionario Info sia nei metadati XMP, e imposta DisplayDocTitle;</li>
+<li>usa un salvataggio incrementale: le modifiche vengono aggiunte a una copia del file, così il resto del documento – tag compresi – resta esattamente com’era;</li>
+<li>il risultato è un nuovo file chiamato <code>nome-accessible.pdf</code>, salvato accanto all’originale. L’originale non viene mai toccato.</li>
+</ul>
+
+<h2>Come abbiamo fatto il test</h2>
+<p>Le indicazioni su Word, Pages e PDFKit vengono da test svolti a ottobre 2026 su macOS 27 con un documento di esempio fittizio (titoli, un elenco, una tabella con riga di intestazione, due immagini e un link). I passaggi per InDesign descrivono le impostazioni documentate; non abbiamo incluso un’esportazione da InDesign in questa serie di test. I nomi dei menu possono variare leggermente tra versioni.</p>
+
+<h2>Come ti aiuta PDF Accessibility Checker</h2>
+<p>L’app ti dice se lingua e titolo sono presenti, se il titolo compare nella finestra e se la lingua dichiarata corrisponde davvero al testo. Con Pro puoi correggere tutto in un solo passaggio e controllare subito il nuovo file. <a href="index.html">Scopri PDF Accessibility Checker</a>.</p>
+</article>
+</div>
+</main>
+<footer class="site-footer">
+<div class="wrap">
+<p class="disclaimer">PDF Accessibility Checker aiuta a controllare l'accessibilità dei file PDF. Non certifica la conformità legale a nessuna norma o standard.</p>
+<p><a href="privacy.html">Informativa sulla privacy</a> · <a href="support.html">Supporto e domande frequenti</a></p>
+<p>© 2026 Corrado Lagioni.</p>
+</div>
+</footer>
+</body>
+</html>

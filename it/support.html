@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Supporto e domande frequenti – PDF Accessibility Checker</title>
+<meta name="description" content="Risposte alle domande frequenti su PDF Accessibility Checker: risultati da verificare, differenze con altri validatori, file cifrati, danneggiati e molto grandi, ripristino degli acquisti.">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="../style.css">
+<link rel="alternate" hreflang="en" href="../support.html">
+<link rel="alternate" hreflang="it" href="support.html">
+<link rel="alternate" hreflang="x-default" href="../support.html">
+</head>
+<body>
+<a class="skip" href="#main">Vai al contenuto principale</a>
+<header class="site-header">
+<div class="wrap header-inner">
+<a class="brand" href="index.html">PDF Accessibility Checker</a>
+<nav aria-label="Principale">
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="guide.html">Guida</a></li>
+<li><a href="articles.html">Articoli</a></li>
+<li><a href="support.html" aria-current="page">Supporto</a></li>
+<li><a href="privacy.html">Privacy</a></li>
+<li class="lang"><a href="../support.html" hreflang="en" lang="en" aria-label="Read this page in English">English</a></li>
+</ul>
+</nav>
+</div>
+</header>
+<main id="main" tabindex="-1">
+<div class="wrap">
+<h1>Supporto e domande frequenti</h1>
+
+<h2>Perché alcuni risultati sono “Da verificare”?</h2>
+<p>Molti requisiti di accessibilità non possono essere decisi da un programma. Per esempio, l’app vede se un’immagine ha un testo alternativo, ma non se quel testo descrive bene l’immagine. In questi casi l’app segnala “Da verificare” invece di dare l’esito positivo: quando non può esserne sicura, non ti dice mai che va tutto bene. Usa la vista Verifiche manuali per esaminare queste voci.</p>
+
+<h2>Perché i miei risultati sono diversi da quelli di un altro validatore?</h2>
+<p>Strumenti diversi interpretano alcune regole in modo diverso, controllano insiemi di condizioni diversi e a volte leggono il file in modo diverso. Un esempio noto: quando un PDF è stato modificato e salvato in modo incrementale, contiene più revisioni della stessa pagina. In un caso che abbiamo documentato, veraPDF leggeva una revisione superata di una pagina, mentre questa app (tramite macOS) leggeva quella attuale: i due strumenti davano quindi risultati diversi per lo stesso file. Se i risultati differiscono, la spiegazione nell’app ti dice che cosa è stato controllato e dove.</p>
+<p>PDF Accessibility Checker implementa un sottoinsieme delle regole automatiche PDF/UA, più alcuni controlli che altri validatori non hanno. Vedi <a href="pac-alternative-mac.html">il confronto con PAC, veraPDF e Acrobat</a>.</p>
+
+<h2>Posso controllare PDF cifrati?</h2>
+<p>Sì, se macOS riesce ad aprirli. Non possono però essere corretti automaticamente: salva di nuovo il documento senza impostazioni di sicurezza, poi esegui la correzione.</p>
+
+<h2>Che cosa succede con i file danneggiati?</h2>
+<p>Se l’indice di un file è danneggiato, macOS lo ripara durante la lettura e l’app te lo segnala: i risultati descrivono allora il file riparato, e altri lettori potrebbero vedere qualcosa di diverso. Se la struttura interna è troppo danneggiata, l’app non può correggere il file in sicurezza; esportalo di nuovo dal documento originale.</p>
+
+<h2>Perché il controllo si è fermato su un file molto grande?</h2>
+<p>Per mantenere il Mac reattivo, l’analisi si ferma dopo un limite di tempo. Succede di solito con file che contengono immagini molto pesanti. Riprova; se succede ancora, il file potrebbe essere danneggiato, oppure puoi esportarne una versione più leggera dal documento di origine.</p>
+
+<h2>Come ripristino l’acquisto di Pro?</h2>
+<p>Apri la schermata di acquisto di Pro nell’app e scegli Ripristina acquisti. Assicurati di aver effettuato l’accesso all’App Store con lo stesso Account Apple usato per l’acquisto.</p>
+
+<h2>Un risultato senza errori significa che il PDF è conforme alla legge?</h2>
+<p>No. L’app ti aiuta a trovare e correggere molti problemi, ma nessuno strumento automatico può certificare la conformità a una legge o a uno standard. La verifica manuale resta necessaria.</p>
+
+<h2>Come segnalo un problema?</h2>
+<p>Scrivi a Lagioni Apps Support all’indirizzo <a href="mailto:batesstamp.support@gmail.com">batesstamp.support@gmail.com</a>. Descrivi che cosa hai fatto, che cosa ti aspettavi e che cosa è successo, e indica la versione di macOS. Non allegare documenti riservati.</p>
+</div>
+</main>
+<footer class="site-footer">
+<div class="wrap">
+<p class="disclaimer">PDF Accessibility Checker aiuta a controllare l'accessibilità dei file PDF. Non certifica la conformità legale a nessuna norma o standard.</p>
+<p><a href="privacy.html">Informativa sulla privacy</a> · <a href="support.html">Supporto e domande frequenti</a></p>
+<p>© 2026 Corrado Lagioni.</p>
+</div>
+</footer>
+</body>
+</html>

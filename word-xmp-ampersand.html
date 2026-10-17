@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Invalid XMP metadata in PDFs from Word for Microsoft 365</title>
+<meta name="description" content="An ampersand in the author, department or company name can make Word for Microsoft 365 write invalid XMP metadata, so strict readers lose the PDF title. Cause and fix.">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="style.css">
+<link rel="alternate" hreflang="en" href="word-xmp-ampersand.html">
+<link rel="alternate" hreflang="it" href="it/word-xmp-ampersand.html">
+<link rel="alternate" hreflang="x-default" href="word-xmp-ampersand.html">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="site-header">
+<div class="wrap header-inner">
+<a class="brand" href="index.html">PDF Accessibility Checker</a>
+<nav aria-label="Main">
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="guide.html">Guide</a></li>
+<li><a href="articles.html" aria-current="page">Articles</a></li>
+<li><a href="support.html">Support</a></li>
+<li><a href="privacy.html">Privacy</a></li>
+<li class="lang"><a href="it/word-xmp-ampersand.html" hreflang="it" lang="it" aria-label="Leggi questa pagina in italiano">Italiano</a></li>
+</ul>
+</nav>
+</div>
+</header>
+<main id="main" tabindex="-1">
+<div class="wrap">
+<article>
+<h1>Invalid XMP metadata in PDFs from Word for Microsoft 365</h1>
+<p class="meta">Observed in 2026; article written in October 2026.</p>
+<p class="lead">A single “&amp;” in the author or company name can make a PDF lose its title in the eyes of strict validators. The cause is a small bug in how Word for Microsoft 365 writes metadata.</p>
+
+<h2>How we found it</h2>
+<p>We tested PDF Accessibility Checker against veraPDF on a set of public PDFs that had never been used to write the app’s rules (a “blind test”). One of them, a public document from an EU agency created with Word for Microsoft 365, was reported by veraPDF as having no title, although the title was clearly set. Reading the file directly showed the reason described below. We do not name the agency: the problem comes from the software, not from the authors.</p>
+
+<h2>What XMP metadata is</h2>
+<p>A PDF stores information about itself – title, author, subject, language, the PDF/UA identifier – in two places: the older Info dictionary and an XMP metadata packet. XMP is a small XML document embedded in the PDF. PDF/UA requires the title to be in the XMP metadata (dc:title).</p>
+
+<h2>What goes wrong</h2>
+<p>In XML, the character “&amp;” has a special meaning and must be written as <code>&amp;amp;</code>. When the author, the department or the company in the document properties contains “&amp;” – for example “Research &amp; Development” – Word writes it into the XMP (in dc:creator) without escaping it. The result is XML that is not well-formed.</p>
+<p>A tolerant reader may skip over the error. A strict reader, such as veraPDF, cannot parse the packet and discards the whole metadata block. Everything in it is lost at once, including the title. The PDF is then reported as having no dc:title (veraPDF rule 7.1-9), and the PDF/UA identifier, if present, disappears too.</p>
+<p>Assistive technology and PDF viewers vary in how they handle this. That is precisely the problem: the same file can look fine in one program and lose its title in another.</p>
+
+<h2>How to tell whether your PDF is affected</h2>
+<p>The symptoms are confusing, because the title looks fine in most places. The file name may be shown instead of the title in some viewers; a strict validator reports “no dc:title” or a missing PDF/UA identifier even though you set both; or one tool says the metadata is fine while another says it is missing. If you see any of these, look at the author, company and department properties of the source document: an “&amp;” there is the most likely cause.</p>
+
+<h2>How to avoid it in Word</h2>
+<ul>
+<li>Before exporting, open File &gt; Properties and look at the author, company and department fields (and any custom properties).</li>
+<li>Replace “&amp;” with “and” (or the equivalent in your language), then save the PDF again.</li>
+<li>If your organization fills these fields automatically from a template or a directory, ask IT to avoid “&amp;” in those values.</li>
+</ul>
+
+<h2>How to repair an existing PDF</h2>
+<p>If you cannot export the document again, the XMP packet has to be repaired: the special characters must be escaped so the XML becomes well-formed. PDF Accessibility Checker Pro does this automatically. It escapes the characters and keeps all the other properties as they were. If the packet is too damaged for that, it rebuilds a minimal valid packet with the essential information, such as the title. As always, the result is saved as a new file next to the original.</p>
+
+<h2>How PDF Accessibility Checker helps</h2>
+<p>The app checks whether the XMP metadata is well-formed – a check that many validators do not report as such – and tells you in plain language when it is not, instead of only saying that the title is missing. With Pro, the Fix button repairs the packet in a new file named <code>name-accessible.pdf</code>, never over the original, and checks the result again. <a href="index.html">Learn more about PDF Accessibility Checker</a>.</p>
+</article>
+</div>
+</main>
+<footer class="site-footer">
+<div class="wrap">
+<p class="disclaimer">PDF Accessibility Checker helps you check the accessibility of PDF files. It does not certify legal conformance with any law or standard.</p>
+<p><a href="privacy.html">Privacy policy</a> · <a href="support.html">Support and FAQ</a></p>
+<p>© 2026 Corrado Lagioni.</p>
+</div>
+</footer>
+</body>
+</html>

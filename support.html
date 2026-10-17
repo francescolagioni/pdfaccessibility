@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Support and FAQ – PDF Accessibility Checker</title>
+<meta name="description" content="Answers to common questions about PDF Accessibility Checker: Needs review results, differences from other validators, encrypted, damaged and large files, restoring purchases.">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="style.css">
+<link rel="alternate" hreflang="en" href="support.html">
+<link rel="alternate" hreflang="it" href="it/support.html">
+<link rel="alternate" hreflang="x-default" href="support.html">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="site-header">
+<div class="wrap header-inner">
+<a class="brand" href="index.html">PDF Accessibility Checker</a>
+<nav aria-label="Main">
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="guide.html">Guide</a></li>
+<li><a href="articles.html">Articles</a></li>
+<li><a href="support.html" aria-current="page">Support</a></li>
+<li><a href="privacy.html">Privacy</a></li>
+<li class="lang"><a href="it/support.html" hreflang="it" lang="it" aria-label="Leggi questa pagina in italiano">Italiano</a></li>
+</ul>
+</nav>
+</div>
+</header>
+<main id="main" tabindex="-1">
+<div class="wrap">
+<h1>Support and frequently asked questions</h1>
+
+<h2>Why are some results “Needs review”?</h2>
+<p>Many accessibility requirements cannot be decided by a program. For example, the app can see that an image has alternative text, but not whether the text describes the image well. In these cases the app reports “Needs review” instead of a pass: when it cannot be sure, it never tells you that everything is fine. Use the Manual Checks view to go through these items.</p>
+
+<h2>Why do my results differ from another validator?</h2>
+<p>Different tools interpret some rules in different ways, check different sets of conditions, and sometimes read the file differently. A known example: when a PDF has been edited and saved incrementally, it contains more than one revision of the same page. In one case we documented, veraPDF read a superseded revision of a page, while this app (through macOS) read the current one, so the two tools reported different results for the same file. If results differ, the explanation in the app tells you what was checked and where.</p>
+<p>PDF Accessibility Checker implements a subset of the automatic PDF/UA rules, plus a few checks that other validators do not have. See <a href="pac-alternative-mac.html">how the app compares with PAC, veraPDF and Acrobat</a>.</p>
+
+<h2>Can I check encrypted PDFs?</h2>
+<p>Yes, if macOS can open them. They cannot be fixed automatically, however: save the document again without security settings, then run the fix.</p>
+
+<h2>What happens with damaged files?</h2>
+<p>If a file’s index is damaged, macOS repairs it while reading and the app tells you so: the results then describe the repaired file, and other readers may see something different. If the internal structure is too damaged, the app cannot fix the file safely; export it again from the original document.</p>
+
+<h2>Why did the check stop on a very large file?</h2>
+<p>To keep the Mac responsive, the analysis stops after a time limit. This usually happens with files that contain very heavy images. Try again; if it happens again, the file may be damaged, or you can export a lighter version from the source document.</p>
+
+<h2>How do I restore my Pro purchase?</h2>
+<p>Open the Pro purchase screen in the app and choose Restore Purchases. Make sure you are signed in to the App Store with the same Apple Account you used for the purchase.</p>
+
+<h2>Does a clean result mean my PDF is legally compliant?</h2>
+<p>No. The app helps you find and fix many problems, but no automatic tool can certify conformance with a law or a standard. Manual review remains necessary.</p>
+
+<h2>How do I report a problem?</h2>
+<p>Write to Lagioni Apps Support at <a href="mailto:batesstamp.support@gmail.com">batesstamp.support@gmail.com</a>. Please describe what you did, what you expected and what happened, and include the macOS version. Do not attach confidential documents.</p>
+</div>
+</main>
+<footer class="site-footer">
+<div class="wrap">
+<p class="disclaimer">PDF Accessibility Checker helps you check the accessibility of PDF files. It does not certify legal conformance with any law or standard.</p>
+<p><a href="privacy.html">Privacy policy</a> · <a href="support.html">Support and FAQ</a></p>
+<p>© 2026 Corrado Lagioni.</p>
+</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PAC for Mac? Alternatives for checking PDF/UA on a Mac</title>
+<meta name="description" content="PAC runs only on Windows. A fair comparison of veraPDF, Adobe Acrobat Pro and PDF Accessibility Checker for checking PDF/UA accessibility on a Mac, with measured agreement data.">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="style.css">
+<link rel="alternate" hreflang="en" href="pac-alternative-mac.html">
+<link rel="alternate" hreflang="it" href="it/pac-alternative-mac.html">
+<link rel="alternate" hreflang="x-default" href="pac-alternative-mac.html">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="site-header">
+<div class="wrap header-inner">
+<a class="brand" href="index.html">PDF Accessibility Checker</a>
+<nav aria-label="Main">
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="guide.html">Guide</a></li>
+<li><a href="articles.html" aria-current="page">Articles</a></li>
+<li><a href="support.html">Support</a></li>
+<li><a href="privacy.html">Privacy</a></li>
+<li class="lang"><a href="it/pac-alternative-mac.html" hreflang="it" lang="it" aria-label="Leggi questa pagina in italiano">Italiano</a></li>
+</ul>
+</nav>
+</div>
+</header>
+<main id="main" tabindex="-1">
+<div class="wrap">
+<article>
+<h1>PAC for Mac? Alternatives for checking PDF/UA on a Mac</h1>
+<p class="meta">Updated October 2026.</p>
+<p class="lead">If you work on a Mac and have been told to “check the PDF with PAC”, you will soon find out that there is no Mac version. Here are the options, with their strengths and limits.</p>
+
+<p class="note">A note on names: this app is called PDF Accessibility Checker, which is also what the acronym PAC stands for. The two are not related. PAC is developed by axes4 and the PDF/UA Foundation.</p>
+
+<h2>The tools</h2>
+<h3>PAC</h3>
+<p>PAC (PDF Accessibility Checker) by axes4 and the PDF/UA Foundation is free and widely used as a reference for PDF/UA checks. It runs on Windows only. On a Mac you need a Windows virtual machine or a Windows PC.</p>
+
+<h3>veraPDF</h3>
+<p>veraPDF is open source and cross-platform; it is written in Java and runs on macOS. It validates the machine-checkable rules of PDF/UA-1 (and PDF/A). Its messages are technical – rule numbers and PDF object names – which suits developers and specialists more than authors.</p>
+
+<h3>Adobe Acrobat Pro</h3>
+<p>Acrobat Pro, available on Mac by subscription, has an accessibility checker and a full set of remediation tools to edit tags, reading order and alternative text. It is the most complete option for fixing documents.</p>
+
+<h3>PDF Accessibility Checker (this app)</h3>
+<p>A native Mac app that works offline. It explains problems in plain language and tells you how to fix them in the source program (Word, Pages, InDesign). It adds a screen reader view, guided manual checks and some automatic fixes (language, title, XMP repair, removal of the author and document metadata) in the Pro version.</p>
+
+<h2>At a glance</h2>
+<div class="table-wrap">
+<table>
+<caption>Comparison of PDF/UA checking tools available to Mac users</caption>
+<thead>
+<tr><th scope="col">Tool</th><th scope="col">Runs on Mac</th><th scope="col">Cost</th><th scope="col">Strengths</th><th scope="col">Limits</th></tr>
+</thead>
+<tbody>
+<tr><th scope="row">PAC</th><td>No (Windows only)</td><td>Free</td><td>Widely used reference; checks many conditions</td><td>Needs Windows</td></tr>
+<tr><th scope="row">veraPDF</th><td>Yes (Java)</td><td>Free, open source</td><td>Complete coverage of machine-checkable PDF/UA-1 rules</td><td>Technical messages; no fixes</td></tr>
+<tr><th scope="row">Acrobat Pro</th><td>Yes</td><td>Subscription</td><td>Checker plus full remediation tools</td><td>Cost; complexity</td></tr>
+<tr><th scope="row">PDF Accessibility Checker</th><td>Yes (native)</td><td>Free; Pro one-time purchase</td><td>Plain language, fixes in the source program, screen reader view, manual checks</td><td>Subset of automatic rules; limited automatic fixes</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2>What this app checks, and how well</h2>
+<p>PDF Accessibility Checker implements a subset of the automatic PDF/UA rules. We compared 19 of its checks with veraPDF: tags, PDF/UA identifier, title, language, untagged content, role map, figure alternative text, headings, tables, lists, font embedding, Unicode mapping, annotations, links, form field names, tab order, notes, encryption and artifact nesting. It also has checks that veraPDF does not have, such as declared language versus the real language of the text, and invalid XMP metadata.</p>
+
+<h3>How we measured it</h3>
+<p>We froze the app’s rules, then ran the app and veraPDF 1.30.3 on 250 public PDFs downloaded afterwards and never used before (Italian, US and European public bodies, companies; tagged and untagged). On the 248 files veraPDF could read, the two tools agreed on 99.8% of file-and-check pairs. All 19 checks agreed on 164 of the 172 tagged files (95.3%) and on 75 of the 76 untagged files. The differences were then analysed:</p>
+<ul>
+<li>eight were false alarms of the app (for example metadata containing invisible control characters, which the app treats as invalid XML while veraPDF tolerates them, and some control codes in fonts);</li>
+<li>two were problems the app missed: one, pages missing from a damaged structure index, has since been fixed; the other is a single page number in a table of contents, linked in an unusual way.</li>
+</ul>
+
+<h2>Being honest about the limits</h2>
+<p>PAC and Acrobat check more conditions than this app. For example, they examine how table header cells are associated with data cells (PDF/UA section 7.5), which this app does not fully verify automatically; it asks you to review table headers manually instead. If you need the broadest automatic coverage, use veraPDF or PAC alongside it.</p>
+<p>And none of these tools – this app included – certifies legal conformance. Automatic checks find many problems, not all of them; a human review of alternative text, reading order and contrast is always needed.</p>
+
+<h2>How PDF Accessibility Checker helps</h2>
+<p>For Mac users who are not accessibility specialists, the app fills the gap between technical validators and full remediation suites: it tells you what is wrong in words you can act on, shows you what a screen reader will read, guides you through the manual checks and fixes the simplest problems for you. <a href="index.html">Learn more about PDF Accessibility Checker</a>.</p>
+</article>
+</div>
+</main>
+<footer class="site-footer">
+<div class="wrap">
+<p class="disclaimer">PDF Accessibility Checker helps you check the accessibility of PDF files. It does not certify legal conformance with any law or standard.</p>
+<p><a href="privacy.html">Privacy policy</a> · <a href="support.html">Support and FAQ</a></p>
+<p>© 2026 Corrado Lagioni.</p>
+</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ADA April 2027 and the European Accessibility Act: what changes for PDFs</title>
+<meta name="description" content="The new ADA Title II dates (April 2027 and 2028) and the European Accessibility Act in force since June 2025: what they mean for PDF documents. General information, not legal advice.">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="style.css">
+<link rel="alternate" hreflang="en" href="ada-2027-european-accessibility-act.html">
+<link rel="alternate" hreflang="it" href="it/ada-2027-european-accessibility-act.html">
+<link rel="alternate" hreflang="x-default" href="ada-2027-european-accessibility-act.html">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="site-header">
+<div class="wrap header-inner">
+<a class="brand" href="index.html">PDF Accessibility Checker</a>
+<nav aria-label="Main">
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="guide.html">Guide</a></li>
+<li><a href="articles.html" aria-current="page">Articles</a></li>
+<li><a href="support.html">Support</a></li>
+<li><a href="privacy.html">Privacy</a></li>
+<li class="lang"><a href="it/ada-2027-european-accessibility-act.html" hreflang="it" lang="it" aria-label="Leggi questa pagina in italiano">Italiano</a></li>
+</ul>
+</nav>
+</div>
+</header>
+<main id="main" tabindex="-1">
+<div class="wrap">
+<article>
+<h1>ADA April 2027 and the European Accessibility Act: what changes for PDFs</h1>
+<p class="meta">Updated October 2026. General information, not legal advice.</p>
+<p class="lead">On both sides of the Atlantic, accessibility rules now clearly cover documents published online, PDFs included. Here is a summary of the key dates and what they mean in practice.</p>
+
+<h2>United States: ADA Title II</h2>
+<p>In April 2024 the US Department of Justice (DOJ) published a rule under Title II of the Americans with Disabilities Act. It requires state and local governments to make their web content and mobile apps conform to WCAG 2.1 level AA. Web content includes documents posted online, such as PDF forms, reports and notices.</p>
+<p>On April 20, 2026 the DOJ published an Interim Final Rule that extends the compliance dates by one year:</p>
+<ul>
+<li><strong>April 26, 2027</strong> for public entities serving a population of 50,000 or more;</li>
+<li><strong>April 26, 2028</strong> for smaller public entities and special districts.</li>
+</ul>
+<p>The technical standard is unchanged: WCAG 2.1 AA.</p>
+<p>Sources: <a href="https://www.ada.gov/resources/2024-03-08-web-rule/">ADA.gov fact sheet on the web and mobile accessibility rule</a>; <a href="https://www.reedsmith.com/articles/doj-extends-digital-accessibility-compliance-dates-under-title-ii-of-the-ada/">Reed Smith: DOJ extends digital accessibility compliance dates under Title II of the ADA</a>; <a href="https://er.educause.edu/articles/2026/6/doj-and-hhs-extend-web-accessibility-deadlines-to-2027-2028">EDUCAUSE Review: DOJ and HHS extend web accessibility deadlines to 2027–2028</a>.</p>
+
+<h2>European Union: the European Accessibility Act</h2>
+<p>The European Accessibility Act (Directive (EU) 2019/882) has applied since 28 June 2025. It covers many products and services, including e-commerce, consumer banking services, e-books, and services related to passenger transport such as ticketing. Each member state has transposed it into national law; in Italy this was done with Legislative Decree 82/2022.</p>
+<p>The harmonized standard EN 301 549 gives the technical requirements, and for documents it references WCAG. Transitional periods exist: some existing services may continue under the old rules until 2030.</p>
+<p>Source: <a href="https://eur-lex.europa.eu/eli/dir/2019/882/oj">Directive (EU) 2019/882 on EUR-Lex</a>.</p>
+
+<h2>What this means for PDFs</h2>
+<p>Both frameworks point to WCAG. For a PDF, meeting WCAG in practice means, among other things:</p>
+<ul>
+<li><strong>Tags</strong>: the document must have a structure that tells assistive technology what is a heading, a paragraph, a list, a table or an image, and the content must be linked to it.</li>
+<li><strong>Language</strong>: the document language must be declared, and must be the right one.</li>
+<li><strong>Title</strong>: a meaningful title, shown in the window instead of the file name.</li>
+<li><strong>Alternative text</strong>: every meaningful image needs a description; decorative elements must be marked as artifacts.</li>
+<li><strong>Reading order</strong>: the tags must follow the logical order of the content.</li>
+<li><strong>Contrast and color</strong>: text must have sufficient contrast, and color must not be the only way to convey information.</li>
+</ul>
+<p>Many of these problems start in the program that creates the PDF. Our tests showed, for example, that <a href="pages-pdf-accessibility.html">Pages exports tags that are not linked to the content</a> and that <a href="word-pdf-wrong-language.html">Word can declare the wrong language</a>.</p>
+
+<h2>A practical plan</h2>
+<ol>
+<li>Make an inventory of the PDFs you publish, starting with the most used and the ones people need to complete a task (forms, notices, terms of service).</li>
+<li>Fix the templates and the export settings first, so new documents are born accessible.</li>
+<li>Check existing documents, fix or replace those that matter, and consider an HTML version for key content.</li>
+<li>Keep manual review in the process: automatic tools cannot judge alternative text or reading order.</li>
+</ol>
+
+<p class="note">This article is general information, not legal advice. Which rules apply to you, and from when, depends on your organization and on national law. Check the official sources and, if needed, ask a legal professional.</p>
+
+<h2>How we prepared this article</h2>
+<p>The legal summary is based on the official texts and on the sources linked above, as available in October 2026. The examples about Pages and Word come from our own tests on macOS 27 with a fictitious sample document.</p>
+
+<h2>How PDF Accessibility Checker helps</h2>
+<p>The app helps you check many PDFs quickly on your Mac, offline – an advantage when documents are confidential. It finds missing tags, language and title, images without alternative text, and structure problems; it guides you through the manual checks; with Pro it checks whole folders and exports a report as an accessible PDF or CSV. It does not certify legal conformance, but it shows you where to start. <a href="index.html">Learn more about PDF Accessibility Checker</a>.</p>
+</article>
+</div>
+</main>
+<footer class="site-footer">
+<div class="wrap">
+<p class="disclaimer">PDF Accessibility Checker helps you check the accessibility of PDF files. It does not certify legal conformance with any law or standard.</p>
+<p><a href="privacy.html">Privacy policy</a> · <a href="support.html">Support and FAQ</a></p>
+<p>© 2026 Corrado Lagioni.</p>
+</div>
+</footer>
+</body>
+</html>

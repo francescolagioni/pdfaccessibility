@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PDFs from Safari, Preview and TextEdit: are they accessible?</title>
+<meta name="description" content="What the built-in macOS tools produce when they make a PDF: TextEdit and Safari create untagged PDFs, Preview keeps existing tags, scans are images. Test results and method.">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="style.css">
+<link rel="alternate" hreflang="en" href="safari-preview-textedit-pdf.html">
+<link rel="alternate" hreflang="it" href="it/safari-preview-textedit-pdf.html">
+<link rel="alternate" hreflang="x-default" href="safari-preview-textedit-pdf.html">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="site-header">
+<div class="wrap header-inner">
+<a class="brand" href="index.html">PDF Accessibility Checker</a>
+<nav aria-label="Main">
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="guide.html">Guide</a></li>
+<li><a href="articles.html" aria-current="page">Articles</a></li>
+<li><a href="support.html">Support</a></li>
+<li><a href="privacy.html">Privacy</a></li>
+<li class="lang"><a href="it/safari-preview-textedit-pdf.html" hreflang="it" lang="it" aria-label="Leggi questa pagina in italiano">Italiano</a></li>
+</ul>
+</nav>
+</div>
+</header>
+<main id="main" tabindex="-1">
+<div class="wrap">
+<article>
+<h1>PDFs from Safari, Preview and TextEdit: are they accessible?</h1>
+<p class="meta">Tested in October 2026 on macOS 27.</p>
+<p class="lead">macOS makes it easy to create a PDF from almost anything. But a PDF that looks right is not necessarily readable by a screen reader. Here is what the built-in tools produce.</p>
+
+<h2>How we tested</h2>
+<p>We used a fictitious sample document with headings, a list, a table with a header row, two images (one with alternative text, one without) and a link, and inspected the resulting PDFs with PDF Accessibility Checker and by reading their structure directly.</p>
+<div class="note">
+<p><strong>Method note.</strong> TextEdit was tested through its own Export as PDF command. Safari and Preview could not be scripted on macOS 27, so their results come from the engines they are built on rather than from the apps’ menus: for Safari, the WebKit print operation of a WKWebView (the same engine that Safari uses to print to PDF); for Preview, Apple’s PDFKit framework, including for the scan-to-PDF case. We expect the apps to give the same results, but a manual export from the apps should confirm them.</p>
+</div>
+
+<h2>TextEdit: Export as PDF</h2>
+<p>TextEdit’s File &gt; Export as PDF produced an untagged PDF. There is no structure at all: no headings, no list, no table, nothing that tells a screen reader what the content is. The text can be extracted, but only as a flat stream.</p>
+
+<h2>Safari: print to PDF</h2>
+<p>The WebKit engine, printing our sample page to PDF, also produced an untagged PDF. Even when the web page itself is well structured – with real headings, lists and alt attributes on images – none of that structure reaches the PDF. In addition:</p>
+<ul>
+<li>links were present as clickable areas but had no description, so a screen reader cannot announce where they lead;</li>
+<li>the Tabs setting, which tells assistive technology to move through links and fields in structure order, was missing.</li>
+</ul>
+<p>If you want to share a web page in an accessible way, sharing the page itself (the URL) is usually better than a PDF of it.</p>
+
+<h2>Preview: re-saving a tagged PDF</h2>
+<p>Good news here: re-saving an already tagged PDF with PDFKit kept the tags intact. If you open an accessible PDF to add a note, rotate or reorder pages, you should not destroy its structure. But PDFKit does not improve anything either: it cannot add tags, set the document language or write the title into the XMP metadata. A PDF that was not accessible before re-saving is not accessible after.</p>
+
+<h2>Scans turned into PDF</h2>
+<p>A scanned page saved as PDF through PDFKit is just an image: there is no text in it. A screen reader finds nothing to read, and you cannot search or copy the content. To make it accessible, the text must first be recognized with OCR (optical character recognition), and then the document must be tagged. Better still, find the original digital document and export it properly.</p>
+
+<h2>What to use instead</h2>
+<ul>
+<li>For text documents, use a word processor with an accessible PDF export. In our tests, <a href="word-pdf-wrong-language.html">Word for Mac’s accessible export</a> worked well, apart from the declared language.</li>
+<li>Pages produces tags, but with serious problems: see <a href="pages-pdf-accessibility.html">why the PDF from Pages is not accessible</a>.</li>
+<li>For designed documents, use Adobe InDesign with tagged PDF export.</li>
+<li>Use Preview to view, annotate and reorganize PDFs, knowing it keeps but does not create accessibility.</li>
+</ul>
+
+<h2>How PDF Accessibility Checker helps</h2>
+<p>The app tells you at once whether a PDF has tags, whether its links have descriptions, whether the Tabs setting is set and whether there is any text at all on the page. The Screen Reader view shows what assistive technology will find – or that it will find nothing. With Pro, you can check a whole folder of PDFs in one go to find the ones that need attention. <a href="index.html">Learn more about PDF Accessibility Checker</a>.</p>
+</article>
+</div>
+</main>
+<footer class="site-footer">
+<div class="wrap">
+<p class="disclaimer">PDF Accessibility Checker helps you check the accessibility of PDF files. It does not certify legal conformance with any law or standard.</p>
+<p><a href="privacy.html">Privacy policy</a> · <a href="support.html">Support and FAQ</a></p>
+<p>© 2026 Corrado Lagioni.</p>
+</div>
+</footer>
+</body>
+</html>

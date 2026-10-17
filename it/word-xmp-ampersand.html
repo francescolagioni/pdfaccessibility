@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Metadati XMP non validi nei PDF di Word per Microsoft 365</title>
+<meta name="description" content="Una e commerciale (&) nel nome di autore, reparto o società può far scrivere a Word per Microsoft 365 metadati XMP non validi, e i lettori rigorosi perdono il titolo del PDF. Causa e soluzione.">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="../style.css">
+<link rel="alternate" hreflang="en" href="../word-xmp-ampersand.html">
+<link rel="alternate" hreflang="it" href="word-xmp-ampersand.html">
+<link rel="alternate" hreflang="x-default" href="../word-xmp-ampersand.html">
+</head>
+<body>
+<a class="skip" href="#main">Vai al contenuto principale</a>
+<header class="site-header">
+<div class="wrap header-inner">
+<a class="brand" href="index.html">PDF Accessibility Checker</a>
+<nav aria-label="Principale">
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="guide.html">Guida</a></li>
+<li><a href="articles.html" aria-current="page">Articoli</a></li>
+<li><a href="support.html">Supporto</a></li>
+<li><a href="privacy.html">Privacy</a></li>
+<li class="lang"><a href="../word-xmp-ampersand.html" hreflang="en" lang="en" aria-label="Read this page in English">English</a></li>
+</ul>
+</nav>
+</div>
+</header>
+<main id="main" tabindex="-1">
+<div class="wrap">
+<article>
+<h1>Metadati XMP non validi nei PDF di Word per Microsoft 365</h1>
+<p class="meta">Osservato nel 2026; articolo scritto a ottobre 2026.</p>
+<p class="lead">Una sola “&amp;” nel nome dell’autore o della società può far perdere il titolo a un PDF agli occhi dei validatori più rigorosi. La causa è un piccolo difetto nel modo in cui Word per Microsoft 365 scrive i metadati.</p>
+
+<h2>Come lo abbiamo scoperto</h2>
+<p>Abbiamo confrontato PDF Accessibility Checker con veraPDF su una raccolta di PDF pubblici mai usati per scrivere le regole dell’app (un “test alla cieca”). Uno di questi, un documento pubblico di un’agenzia dell’Unione europea creato con Word per Microsoft 365, risultava per veraPDF privo di titolo, anche se il titolo era chiaramente impostato. Leggendo direttamente il file abbiamo trovato la causa descritta qui sotto. Non citiamo l’agenzia: il problema dipende dal software, non dagli autori.</p>
+
+<h2>Che cosa sono i metadati XMP</h2>
+<p>Un PDF conserva le informazioni su se stesso – titolo, autore, oggetto, lingua, identificativo PDF/UA – in due posti: il vecchio dizionario Info e un pacchetto di metadati XMP. L’XMP è un piccolo documento XML incorporato nel PDF. PDF/UA richiede che il titolo sia presente nei metadati XMP (dc:title).</p>
+
+<h2>Che cosa va storto</h2>
+<p>In XML il carattere “&amp;” ha un significato speciale e va scritto come <code>&amp;amp;</code>. Quando l’autore, il reparto o la società nelle proprietà del documento contengono una “&amp;” – per esempio “Ricerca &amp; Sviluppo” – Word la scrive nell’XMP (in dc:creator) senza convertirla. Il risultato è un XML non ben formato.</p>
+<p>Un lettore tollerante può passare sopra all’errore. Un lettore rigoroso, come veraPDF, non riesce a interpretare il pacchetto e scarta l’intero blocco di metadati. Tutto ciò che contiene si perde in un colpo solo, titolo compreso. Il PDF viene allora segnalato come privo di dc:title (regola 7.1-9 di veraPDF) e anche l’eventuale identificativo PDF/UA scompare.</p>
+<p>Tecnologie assistive e lettori PDF si comportano in modi diversi. È proprio questo il problema: lo stesso file può sembrare a posto in un programma e perdere il titolo in un altro.</p>
+
+<h2>Come capire se il tuo PDF è interessato</h2>
+<p>I sintomi confondono, perché nella maggior parte dei casi il titolo sembra a posto. Alcuni lettori potrebbero mostrare il nome del file al posto del titolo; un validatore rigoroso segnala “nessun dc:title” o l’assenza dell’identificativo PDF/UA anche se li hai impostati entrambi; oppure uno strumento dice che i metadati sono corretti e un altro che mancano. Se noti uno di questi segnali, guarda le proprietà autore, società e reparto del documento di origine: una “&amp;” lì è la causa più probabile.</p>
+
+<h2>Come evitarlo in Word</h2>
+<ul>
+<li>Prima di esportare, apri File &gt; Proprietà e controlla i campi autore, società e reparto (ed eventuali proprietà personalizzate).</li>
+<li>Sostituisci “&amp;” con “e”, poi salva di nuovo il PDF con File &gt; Salva con nome.</li>
+<li>Se la tua organizzazione compila questi campi automaticamente da un modello o da una rubrica aziendale, chiedi all’IT di evitare la “&amp;” in quei valori.</li>
+</ul>
+
+<h2>Come riparare un PDF esistente</h2>
+<p>Se non puoi esportare di nuovo il documento, va riparato il pacchetto XMP: i caratteri speciali devono essere convertiti perché l’XML torni ben formato. PDF Accessibility Checker Pro lo fa automaticamente. Converte i caratteri e mantiene tutte le altre proprietà come erano. Se il pacchetto è troppo danneggiato, ne ricostruisce uno minimo e valido con le informazioni essenziali, come il titolo. Come sempre, il risultato è salvato in un nuovo file accanto all’originale.</p>
+
+<h2>Come ti aiuta PDF Accessibility Checker</h2>
+<p>L’app verifica che i metadati XMP siano ben formati – un controllo che molti validatori non segnalano come tale – e te lo dice in parole semplici quando non lo sono, invece di dirti soltanto che manca il titolo. Con Pro il pulsante Correggi ripara il pacchetto in un nuovo file chiamato <code>nome-accessible.pdf</code>, mai sopra l’originale, e controlla di nuovo il risultato. <a href="index.html">Scopri PDF Accessibility Checker</a>.</p>
+</article>
+</div>
+</main>
+<footer class="site-footer">
+<div class="wrap">
+<p class="disclaimer">PDF Accessibility Checker aiuta a controllare l'accessibilità dei file PDF. Non certifica la conformità legale a nessuna norma o standard.</p>
+<p><a href="privacy.html">Informativa sulla privacy</a> · <a href="support.html">Supporto e domande frequenti</a></p>
+<p>© 2026 Corrado Lagioni.</p>
+</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PDF Accessibility Checker for Mac</title>
+<meta name="description" content="Check PDF accessibility on your Mac, offline: tags, language, title, alt text, tables and more, explained in plain language, with automatic fixes in the Pro version.">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="style.css">
+<link rel="alternate" hreflang="en" href="index.html">
+<link rel="alternate" hreflang="it" href="it/index.html">
+<link rel="alternate" hreflang="x-default" href="index.html">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="site-header">
+<div class="wrap header-inner">
+<a class="brand" href="index.html">PDF Accessibility Checker</a>
+<nav aria-label="Main">
+<ul>
+<li><a href="index.html" aria-current="page">Home</a></li>
+<li><a href="guide.html">Guide</a></li>
+<li><a href="articles.html">Articles</a></li>
+<li><a href="support.html">Support</a></li>
+<li><a href="privacy.html">Privacy</a></li>
+<li class="lang"><a href="it/index.html" hreflang="it" lang="it" aria-label="Leggi questa pagina in italiano">Italiano</a></li>
+</ul>
+</nav>
+</div>
+</header>
+<main id="main" tabindex="-1">
+<div class="wrap">
+<h1>PDF Accessibility Checker for Mac</h1>
+<p class="lead">Find out whether a PDF can be read by people who use a screen reader, magnification or other assistive technology. The app checks the file on your Mac, explains every problem in plain language and tells you how to fix it in the program that created the document.</p>
+
+<p><a class="button" href="https://apps.apple.com/app/id&lt;app-id&gt;">PDF Accessibility Checker on the Mac App Store</a></p>
+<p class="placeholder">Placeholder: the App Store link (&lt;app-id&gt;) will be added at launch.</p>
+
+<figure>
+<img src="img/1-problems.png" width="1280" height="800" alt="The app window with the file 02-wrong-language.pdf open. The summary reads “4 errors in 4 categories: 4 errors, 1 warning, 4 to review, 1 page”. The errors are No document title, Font not embedded, Metadata not valid and No PDF/UA identification; the warning says the declared language is not the language of the text. The selected problem shows an explanation, a Fix button and instructions for Microsoft Word and Pages, next to a preview of the page.">
+<figcaption>The Problems view: summary, list of problems, explanation and how to fix it.</figcaption>
+</figure>
+
+<h2>What the app checks</h2>
+<p>PDF Accessibility Checker reads the structure of the PDF – the tags that tell assistive technology what is a heading, a list, a table or an image – together with the metadata and the content of the pages. It looks for problems such as:</p>
+<ul>
+<li>no tags at all, or content that is not linked to the tags;</li>
+<li>missing document title, or a title that is not shown in the window;</li>
+<li>missing document language, or a declared language that does not match the text;</li>
+<li>images without alternative text;</li>
+<li>headings, lists and tables with a wrong structure;</li>
+<li>fonts that are not embedded or text that cannot be mapped to Unicode;</li>
+<li>links, form fields and annotations without a description;</li>
+<li>invalid XMP metadata and a missing PDF/UA identifier.</li>
+</ul>
+
+<h2>Three levels of results</h2>
+<ul>
+<li><span class="level-error">Error</span>: a problem that stops some people from using the document.</li>
+<li><span class="level-warning">Warning</span>: a problem that makes the document harder to use, or that is very likely wrong.</li>
+<li><span class="level-review">Needs review</span>: something that a program cannot judge on its own. When the app cannot be sure, it never reports a pass: it asks you to look.</li>
+</ul>
+
+<h2>Screen reader view</h2>
+<p>See the text in the order of the tags, the way a screen reader reads it: headings with their level, lists, tables, and the alternative text of images (or a clear notice when it is missing). The app can also read the text aloud.</p>
+<figure>
+<img src="img/2-screen-reader.png" width="1280" height="800" alt="The Screen Reader view of 03-tagged-report.pdf. On the left, the text in tag order: “Heading level 1: Quarterly Service Report”, a paragraph, a red notice “Image, no alternative text”, and a table of 4 rows with the cells Month, Requests, Solved and the figures for January, February and March. A Read Aloud button is at the top. On the right, the page with a bar chart and the table.">
+<figcaption>The Screen Reader view shows what assistive technology will announce.</figcaption>
+</figure>
+
+<h2>Guided manual checks</h2>
+<p>Some things only a person can decide: whether the alternative text really describes the image, whether the reading order makes sense, whether the contrast is sufficient, whether color is the only way information is given. The Manual Checks view guides you through them one at a time and shows the images one by one, so you can compare each image with its description.</p>
+<figure>
+<img src="img/3-manual-checks.png" width="1280" height="800" alt="The Manual Checks view with six items to check by hand: alternative text describes each image, reading order is logical, what looks like a heading is tagged as a heading, table headers are the right cells, text has enough contrast, colour is not the only way information is given. Below, “Image 1 of 1, page 1” shows the bar chart with previous and next buttons; the same chart is highlighted on the page preview.">
+<figcaption>Manual checks, with the images shown one by one.</figcaption>
+</figure>
+
+<h2>Free and Pro</h2>
+<div class="table-wrap">
+<table>
+<caption>What is included in the free version and in Pro</caption>
+<thead>
+<tr><th scope="col">Feature</th><th scope="col">Free</th><th scope="col">Pro</th></tr>
+</thead>
+<tbody>
+<tr><th scope="row">Complete check of one file at a time, with all problems and explanations</th><td>Yes</td><td>Yes</td></tr>
+<tr><th scope="row">Screen reader view and guided manual checks</th><td>Yes</td><td>Yes</td></tr>
+<tr><th scope="row">Batch check of several files and whole folders, with a summary</th><td>No</td><td>Yes</td></tr>
+<tr><th scope="row">Automatic fixes, saved as a new file</th><td>No</td><td>Yes</td></tr>
+<tr><th scope="row">Report export as an accessible tagged PDF and as CSV</th><td>No</td><td>Yes</td></tr>
+<tr><th scope="row">Finder Quick Action “Check Accessibility”</th><td>No</td><td>Yes</td></tr>
+</tbody>
+</table>
+</div>
+<p>Pro is a one-time in-app purchase of USD 49.99 (the App Store shows the price in your local currency). There is no subscription.</p>
+
+<h3>Automatic fixes in Pro</h3>
+<p>Fixes are always saved as a new file named <code>name-accessible.pdf</code> next to the original, never over it. The new file is then checked again, so you see what changed. The app can:</p>
+<ul>
+<li>set the document language, proposing it from the text with Apple’s NaturalLanguage framework;</li>
+<li>set the document title and make the window show it (DisplayDocTitle);</li>
+<li>repair invalid XMP metadata;</li>
+<li>remove the author and document metadata, overwriting the old values where the file allows it.</li>
+</ul>
+<p>Problems in the structure itself – missing tags, images without alternative text, wrong reading order – have to be fixed in the source document or in a PDF editor. For each of them the app explains how to do it in Microsoft Word, Pages and Adobe InDesign.</p>
+
+<h2>Private by design</h2>
+<ul>
+<li>Runs offline, entirely on your Mac.</li>
+<li>No account, no data collection, no analytics. Read the <a href="privacy.html">privacy policy</a>.</li>
+<li>Requires macOS 14 or later.</li>
+<li>Available in English, Italian, German, French and Spanish.</li>
+</ul>
+
+<h2>Learn more</h2>
+<ul>
+<li><a href="guide.html">How to use PDF Accessibility Checker</a></li>
+<li><a href="articles.html">Articles about PDF accessibility on the Mac</a></li>
+<li><a href="support.html">Support and frequently asked questions</a></li>
+</ul>
+</div>
+</main>
+<footer class="site-footer">
+<div class="wrap">
+<p class="disclaimer">PDF Accessibility Checker helps you check the accessibility of PDF files. It does not certify legal conformance with any law or standard.</p>
+<p><a href="privacy.html">Privacy policy</a> · <a href="support.html">Support and FAQ</a></p>
+<p>© 2026 Corrado Lagioni.</p>
+</div>
+</footer>
+</body>
+</html>

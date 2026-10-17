@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guida – PDF Accessibility Checker</title>
+<meta name="description" content="Come usare PDF Accessibility Checker su Mac: aprire i PDF, leggere riepilogo e problemi, vista screen reader, verifiche manuali, correzioni, esportazione del report e azione rapida del Finder.">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="../style.css">
+<link rel="alternate" hreflang="en" href="../guide.html">
+<link rel="alternate" hreflang="it" href="guide.html">
+<link rel="alternate" hreflang="x-default" href="../guide.html">
+</head>
+<body>
+<a class="skip" href="#main">Vai al contenuto principale</a>
+<header class="site-header">
+<div class="wrap header-inner">
+<a class="brand" href="index.html">PDF Accessibility Checker</a>
+<nav aria-label="Principale">
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="guide.html" aria-current="page">Guida</a></li>
+<li><a href="articles.html">Articoli</a></li>
+<li><a href="support.html">Supporto</a></li>
+<li><a href="privacy.html">Privacy</a></li>
+<li class="lang"><a href="../guide.html" hreflang="en" lang="en" aria-label="Read this page in English">English</a></li>
+</ul>
+</nav>
+</div>
+</header>
+<main id="main" tabindex="-1">
+<div class="wrap">
+<h1>Come usare PDF Accessibility Checker</h1>
+<p class="lead">Questa guida ti accompagna in un controllo tipico, dall’apertura del file all’esportazione del report.</p>
+
+<h2>1. Apri uno o più PDF</h2>
+<p>Scegli File &gt; Apri (<kbd>Comando</kbd>-<kbd>O</kbd>) oppure trascina i file PDF sulla finestra dell’app. Nella versione gratuita l’app controlla un file alla volta. Con Pro puoi trascinare più file o intere cartelle: l’app li controlla tutti e mostra un riepilogo per ciascun file nella barra laterale.</p>
+
+<h2>2. Leggi il riepilogo</h2>
+<p>In alto nella finestra trovi un breve riepilogo come “12 errori in 4 categorie”, seguito dal numero di errori, avvisi e voci da verificare, e dal numero di pagine. I risultati hanno tre livelli:</p>
+<ul>
+<li><span class="level-error">Errore</span> – blocca alcuni utenti;</li>
+<li><span class="level-warning">Avviso</span> – rende il documento più difficile da usare o molto probabilmente è sbagliato;</li>
+<li><span class="level-review">Da verificare</span> – l’app non può esserne sicura e ti chiede di guardare. Quando non è sicura, non segnala mai che va tutto bene.</li>
+</ul>
+<p>I controlli automatici trovano molti problemi, non tutti. Un risultato senza errori non è un certificato di conformità legale.</p>
+
+<h2>3. Seleziona un problema</h2>
+<p>Nella vista Problemi, seleziona un problema nell’elenco. L’app mostra:</p>
+<ul>
+<li>che cosa significa il problema e chi riguarda, in parole semplici;</li>
+<li>dove si trova: il punto viene evidenziato nell’anteprima della pagina;</li>
+<li>come correggerlo nel documento originale, con le istruzioni per Microsoft Word, Pages e Adobe InDesign;</li>
+<li>il pulsante Correggi, se l’app può correggere il problema automaticamente (Pro).</li>
+</ul>
+
+<h2>4. Scheda Screen reader</h2>
+<p>La vista Screen reader mostra il testo nell’ordine dei tag, come lo legge uno screen reader: i titoli con il loro livello, gli elenchi, le tabelle e il testo alternativo di ogni immagine. Le immagini senza testo alternativo sono segnalate chiaramente. Scegli Leggi ad alta voce per ascoltare il testo.</p>
+
+<h2>5. Scheda Verifiche manuali</h2>
+<p>Alcuni controlli richiedono il giudizio di una persona: se il testo alternativo descrive ogni immagine, se l’ordine di lettura è logico, se il testo ha un contrasto sufficiente, se il colore è l’unico modo per dare un’informazione. La vista Verifiche manuali li elenca; per il testo alternativo mostra le immagini una per una accanto alla loro descrizione. Le voci contano come “da verificare” finché non rispondi.</p>
+
+<h2>6. Correggi (Pro)</h2>
+<p>Scegli Correggi per applicare le correzioni automatiche disponibili: lingua del documento (proposta dal testo), titolo e DisplayDocTitle, riparazione dei metadati XMP non validi e rimozione dell’autore e dei metadati del documento. Il risultato viene salvato in un nuovo file, <code>nome-accessible.pdf</code>, accanto all’originale; l’originale non viene mai sovrascritto. Il nuovo file viene controllato di nuovo automaticamente.</p>
+
+<h2>7. Esporta un report (Pro)</h2>
+<p>Scegli Esporta report per salvare i risultati come PDF accessibile con tag, da condividere con colleghi o clienti, oppure come file CSV da aprire in un foglio di calcolo.</p>
+
+<h2>8. Azione rapida del Finder (Pro)</h2>
+<p>Puoi controllare un PDF senza aprire prima l’app: fai clic con il tasto destro su un PDF nel Finder e scegli Azioni rapide &gt; Controlla accessibilità. Se l’azione non compare, attivala in Impostazioni di Sistema &gt; Generali &gt; Elementi login ed estensioni &gt; Finder (la dicitura esatta può variare leggermente tra le versioni di macOS).</p>
+
+<h2>Abbreviazioni da tastiera</h2>
+<div class="table-wrap">
+<table>
+<caption>Abbreviazioni da tastiera</caption>
+<thead><tr><th scope="col">Abbreviazione</th><th scope="col">Azione</th></tr></thead>
+<tbody>
+<tr><td><kbd>Comando</kbd>-<kbd>O</kbd></td><td>Apri un PDF</td></tr>
+<tr><td><kbd>Comando</kbd>-<kbd>1</kbd></td><td>Mostra la vista Problemi</td></tr>
+<tr><td><kbd>Comando</kbd>-<kbd>2</kbd></td><td>Mostra la vista Screen reader</td></tr>
+<tr><td><kbd>Comando</kbd>-<kbd>3</kbd></td><td>Mostra la vista Verifiche manuali</td></tr>
+<tr><td><kbd>Comando</kbd>-<kbd>Freccia sinistra</kbd></td><td>Immagine precedente nella revisione del testo alternativo</td></tr>
+<tr><td><kbd>Comando</kbd>-<kbd>Freccia destra</kbd></td><td>Immagine successiva nella revisione del testo alternativo</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</main>
+<footer class="site-footer">
+<div class="wrap">
+<p class="disclaimer">PDF Accessibility Checker aiuta a controllare l'accessibilità dei file PDF. Non certifica la conformità legale a nessuna norma o standard.</p>
+<p><a href="privacy.html">Informativa sulla privacy</a> · <a href="support.html">Supporto e domande frequenti</a></p>
+<p>© 2026 Corrado Lagioni.</p>
+</div>
+</footer>
+</body>
+</html>

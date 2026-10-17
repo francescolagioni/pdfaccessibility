@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PAC per Mac? Alternative per controllare il PDF/UA su Mac</title>
+<meta name="description" content="PAC funziona solo su Windows. Un confronto corretto tra veraPDF, Adobe Acrobat Pro e PDF Accessibility Checker per controllare l'accessibilità PDF/UA su Mac, con dati di concordanza misurati.">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="../style.css">
+<link rel="alternate" hreflang="en" href="../pac-alternative-mac.html">
+<link rel="alternate" hreflang="it" href="pac-alternative-mac.html">
+<link rel="alternate" hreflang="x-default" href="../pac-alternative-mac.html">
+</head>
+<body>
+<a class="skip" href="#main">Vai al contenuto principale</a>
+<header class="site-header">
+<div class="wrap header-inner">
+<a class="brand" href="index.html">PDF Accessibility Checker</a>
+<nav aria-label="Principale">
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="guide.html">Guida</a></li>
+<li><a href="articles.html" aria-current="page">Articoli</a></li>
+<li><a href="support.html">Supporto</a></li>
+<li><a href="privacy.html">Privacy</a></li>
+<li class="lang"><a href="../pac-alternative-mac.html" hreflang="en" lang="en" aria-label="Read this page in English">English</a></li>
+</ul>
+</nav>
+</div>
+</header>
+<main id="main" tabindex="-1">
+<div class="wrap">
+<article>
+<h1>PAC per Mac? Alternative per controllare il PDF/UA su Mac</h1>
+<p class="meta">Aggiornato a ottobre 2026.</p>
+<p class="lead">Se lavori su Mac e ti hanno chiesto di “controllare il PDF con PAC”, scoprirai presto che non esiste una versione per Mac. Ecco le alternative, con i loro punti di forza e i loro limiti.</p>
+
+<p class="note">Una nota sui nomi: questa app si chiama PDF Accessibility Checker, che è anche il significato della sigla PAC. Le due non hanno alcun legame. PAC è sviluppato da axes4 e dalla PDF/UA Foundation.</p>
+
+<h2>Gli strumenti</h2>
+<h3>PAC</h3>
+<p>PAC (PDF Accessibility Checker) di axes4 e della PDF/UA Foundation è gratuito e molto usato come riferimento per i controlli PDF/UA. Funziona solo su Windows. Su Mac serve una macchina virtuale Windows o un PC Windows.</p>
+
+<h3>veraPDF</h3>
+<p>veraPDF è open source e multipiattaforma; è scritto in Java e funziona su macOS. Verifica le regole controllabili automaticamente di PDF/UA-1 (e di PDF/A). I suoi messaggi sono tecnici – numeri di regola e nomi di oggetti PDF – e si adattano più a sviluppatori e specialisti che a chi scrive i documenti.</p>
+
+<h3>Adobe Acrobat Pro</h3>
+<p>Acrobat Pro, disponibile su Mac in abbonamento, ha un controllo di accessibilità e un insieme completo di strumenti di correzione per modificare tag, ordine di lettura e testo alternativo. È l’opzione più completa per correggere i documenti.</p>
+
+<h3>PDF Accessibility Checker (questa app)</h3>
+<p>Un’app nativa per Mac che funziona offline. Spiega i problemi in parole semplici e indica come correggerli nel programma di origine (Word, Pages, InDesign). Aggiunge una vista screen reader, verifiche manuali guidate e, nella versione Pro, alcune correzioni automatiche (lingua, titolo, riparazione XMP, rimozione di autore e metadati del documento).</p>
+
+<h2>In sintesi</h2>
+<div class="table-wrap">
+<table>
+<caption>Confronto tra gli strumenti di controllo PDF/UA disponibili per chi usa il Mac</caption>
+<thead>
+<tr><th scope="col">Strumento</th><th scope="col">Funziona su Mac</th><th scope="col">Costo</th><th scope="col">Punti di forza</th><th scope="col">Limiti</th></tr>
+</thead>
+<tbody>
+<tr><th scope="row">PAC</th><td>No (solo Windows)</td><td>Gratuito</td><td>Riferimento molto diffuso; controlla molte condizioni</td><td>Richiede Windows</td></tr>
+<tr><th scope="row">veraPDF</th><td>Sì (Java)</td><td>Gratuito, open source</td><td>Copertura completa delle regole PDF/UA-1 controllabili automaticamente</td><td>Messaggi tecnici; nessuna correzione</td></tr>
+<tr><th scope="row">Acrobat Pro</th><td>Sì</td><td>Abbonamento</td><td>Controllo più strumenti di correzione completi</td><td>Costo; complessità</td></tr>
+<tr><th scope="row">PDF Accessibility Checker</th><td>Sì (nativa)</td><td>Gratuita; Pro con acquisto una tantum</td><td>Linguaggio semplice, correzioni nel programma di origine, vista screen reader, verifiche manuali</td><td>Sottoinsieme delle regole automatiche; correzioni automatiche limitate</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2>Che cosa controlla questa app, e con quale precisione</h2>
+<p>PDF Accessibility Checker implementa un sottoinsieme delle regole automatiche PDF/UA. Abbiamo confrontato 19 dei suoi controlli con veraPDF: tag, identificativo PDF/UA, titolo, lingua, contenuto senza tag, role map, testo alternativo delle figure, titoli, tabelle, elenchi, incorporamento dei font, mappatura Unicode, annotazioni, link, nomi dei campi modulo, ordine di tabulazione, note, cifratura e annidamento degli artefatti. Ha anche controlli che veraPDF non ha, come il confronto tra lingua dichiarata e lingua reale del testo, e i metadati XMP non validi.</p>
+
+<h3>Come lo abbiamo misurato</h3>
+<p>Abbiamo congelato le regole dell’app, poi abbiamo eseguito l’app e veraPDF 1.30.3 su 250 PDF pubblici scaricati dopo e mai usati prima (enti pubblici italiani, statunitensi ed europei, aziende; taggati e non taggati). Sui 248 file che veraPDF ha potuto leggere, i due strumenti hanno concordato sul 99,8% delle coppie file-controllo. Tutti i 19 controlli hanno concordato su 164 dei 172 file taggati (95,3%) e su 75 dei 76 non taggati. Le differenze sono state poi analizzate:</p>
+<ul>
+<li>otto erano falsi allarmi dell’app (per esempio metadati con caratteri di controllo invisibili, che l’app considera XML non valido mentre veraPDF li tollera, e alcuni codici di controllo nei font);</li>
+<li>due erano problemi non visti dall’app: uno, pagine mancanti da un indice di struttura danneggiato, è stato poi corretto; l’altro è un singolo numero di pagina in un sommario, collegato in modo insolito.</li>
+</ul>
+
+<h2>Onestà sui limiti</h2>
+<p>PAC e Acrobat controllano più condizioni di questa app. Per esempio esaminano come le celle di intestazione delle tabelle sono associate alle celle di dati (sezione 7.5 di PDF/UA), che questa app non verifica completamente in modo automatico: ti chiede invece di controllare a mano le intestazioni delle tabelle. Se ti serve la copertura automatica più ampia, usa veraPDF o PAC insieme all’app.</p>
+<p>E nessuno di questi strumenti – questa app compresa – certifica la conformità legale. I controlli automatici trovano molti problemi, non tutti; serve sempre una verifica umana di testo alternativo, ordine di lettura e contrasto.</p>
+
+<h2>Come ti aiuta PDF Accessibility Checker</h2>
+<p>Per chi usa il Mac senza essere specialista di accessibilità, l’app colma lo spazio tra i validatori tecnici e le suite di correzione complete: ti dice che cosa non va con parole su cui puoi agire, ti mostra che cosa leggerà uno screen reader, ti guida nelle verifiche manuali e corregge da sola i problemi più semplici. <a href="index.html">Scopri PDF Accessibility Checker</a>.</p>
+</article>
+</div>
+</main>
+<footer class="site-footer">
+<div class="wrap">
+<p class="disclaimer">PDF Accessibility Checker aiuta a controllare l'accessibilità dei file PDF. Non certifica la conformità legale a nessuna norma o standard.</p>
+<p><a href="privacy.html">Informativa sulla privacy</a> · <a href="support.html">Supporto e domande frequenti</a></p>
+<p>© 2026 Corrado Lagioni.</p>
+</div>
+</footer>
+</body>
+</html>

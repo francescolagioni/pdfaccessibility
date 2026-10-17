@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://francescolagioni.github.io/pdfaccessibility/sitemap.xml

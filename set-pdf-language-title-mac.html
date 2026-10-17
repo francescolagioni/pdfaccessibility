@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to set the language and title of a PDF on Mac</title>
+<meta name="description" content="Why a PDF needs a language and a title, and how to set them on Mac in Word, Pages, InDesign, Preview and PDF Accessibility Checker.">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="style.css">
+<link rel="alternate" hreflang="en" href="set-pdf-language-title-mac.html">
+<link rel="alternate" hreflang="it" href="it/set-pdf-language-title-mac.html">
+<link rel="alternate" hreflang="x-default" href="set-pdf-language-title-mac.html">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="site-header">
+<div class="wrap header-inner">
+<a class="brand" href="index.html">PDF Accessibility Checker</a>
+<nav aria-label="Main">
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="guide.html">Guide</a></li>
+<li><a href="articles.html" aria-current="page">Articles</a></li>
+<li><a href="support.html">Support</a></li>
+<li><a href="privacy.html">Privacy</a></li>
+<li class="lang"><a href="it/set-pdf-language-title-mac.html" hreflang="it" lang="it" aria-label="Leggi questa pagina in italiano">Italiano</a></li>
+</ul>
+</nav>
+</div>
+</header>
+<main id="main" tabindex="-1">
+<div class="wrap">
+<article>
+<h1>How to set the language and title of a PDF on Mac</h1>
+<p class="meta">Updated October 2026, macOS 27.</p>
+<p class="lead">Two of the most common accessibility problems in PDFs are also among the easiest to fix: a missing document language and a missing title. Here is why they matter and how to set them with the tools you are likely to have on a Mac.</p>
+
+<h2>Why they matter</h2>
+<ul>
+<li><strong>Language.</strong> Screen readers use the declared language to choose the voice and the pronunciation. Without it, or with the wrong one, a document can become hard to understand: an Italian text read with an English voice is a good example.</li>
+<li><strong>Title.</strong> The title is the first thing a screen reader announces when the document opens. Without it, people hear the file name instead.</li>
+<li><strong>Window title.</strong> A setting called DisplayDocTitle tells PDF viewers to show the title, not the file name, in the window title bar and in the list of open windows. PDF/UA requires it.</li>
+</ul>
+
+<h2>Microsoft Word for Mac</h2>
+<ul>
+<li>Title: File &gt; Properties &gt; Title.</li>
+<li>Language: select the text and choose Tools &gt; Language. Do this for the whole document and for any passages in another language.</li>
+<li>Export with File &gt; Save As &gt; PDF and “Best for electronic distribution and accessibility”. In our tests this option wrote the title into the XMP metadata and set DisplayDocTitle. Check the language, though: in our test Word declared the interface language instead of the document’s (see <a href="word-pdf-wrong-language.html">Word for Mac declares the wrong language</a>).</li>
+</ul>
+
+<h2>Pages</h2>
+<p>Pages cannot set either. In our tests, its PDF export never declared a document language and never wrote a title into the XMP metadata, and DisplayDocTitle was missing. You need to set them afterwards with another tool. See also <a href="pages-pdf-accessibility.html">why the PDF from Pages is not accessible</a>.</p>
+
+<h2>Adobe InDesign</h2>
+<ul>
+<li>Title: File &gt; File Info, then fill in the Document Title.</li>
+<li>In the Export Adobe PDF dialog, under Advanced, set Display Title to “Document Title”. This sets DisplayDocTitle.</li>
+<li>Language: set it in your paragraph and character styles (and on any text in a different language), so it is written into the tags.</li>
+<li>Export with Create Tagged PDF enabled.</li>
+</ul>
+
+<h2>Preview</h2>
+<p>Preview is built on Apple’s PDFKit framework. In our tests, re-saving a tagged PDF with PDFKit kept the existing tags intact, which is good news if you only need to annotate or reorder pages. But PDFKit offers no way to set the document language. It can write a title, but only into the older Info dictionary, not into the XMP metadata that PDF/UA requires, and it does not set DisplayDocTitle.</p>
+
+<h2>PDF Accessibility Checker</h2>
+<p>With the Pro version, the app sets both:</p>
+<ul>
+<li>It proposes the document language from the text, using Apple’s NaturalLanguage framework.</li>
+<li>It writes the title into both the Info dictionary and the XMP metadata, and sets DisplayDocTitle.</li>
+<li>It uses an incremental save: the changes are appended to a copy of the file, so the rest of the document – tags included – stays exactly as it was.</li>
+<li>The result is a new file named <code>name-accessible.pdf</code>, saved next to the original. The original is never touched.</li>
+</ul>
+
+<h2>How we tested</h2>
+<p>The statements about Word, Pages and PDFKit come from tests we ran in October 2026 on macOS 27 with a fictitious sample document (headings, a list, a table with a header row, two images and a link). The InDesign steps describe the documented settings; we did not include an InDesign export in this test series.</p>
+
+<h2>How PDF Accessibility Checker helps</h2>
+<p>The app tells you whether the language and the title are present, whether the title appears in the window, and whether the declared language really matches the text. With Pro you can fix all of this in one step and check the new file straight away. <a href="index.html">Learn more about PDF Accessibility Checker</a>.</p>
+</article>
+</div>
+</main>
+<footer class="site-footer">
+<div class="wrap">
+<p class="disclaimer">PDF Accessibility Checker helps you check the accessibility of PDF files. It does not certify legal conformance with any law or standard.</p>
+<p><a href="privacy.html">Privacy policy</a> · <a href="support.html">Support and FAQ</a></p>
+<p>© 2026 Corrado Lagioni.</p>
+</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Word per Mac dichiara la lingua sbagliata nel PDF</title>
+<meta name="description" content="L'esportazione accessibile in PDF di Word per Mac è ottima, ma nel nostro test ha dichiarato l'inglese per un documento italiano. Come accorgersene e come correggere.">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="../style.css">
+<link rel="alternate" hreflang="en" href="../word-pdf-wrong-language.html">
+<link rel="alternate" hreflang="it" href="word-pdf-wrong-language.html">
+<link rel="alternate" hreflang="x-default" href="../word-pdf-wrong-language.html">
+</head>
+<body>
+<a class="skip" href="#main">Vai al contenuto principale</a>
+<header class="site-header">
+<div class="wrap header-inner">
+<a class="brand" href="index.html">PDF Accessibility Checker</a>
+<nav aria-label="Principale">
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="guide.html">Guida</a></li>
+<li><a href="articles.html" aria-current="page">Articoli</a></li>
+<li><a href="support.html">Supporto</a></li>
+<li><a href="privacy.html">Privacy</a></li>
+<li class="lang"><a href="../word-pdf-wrong-language.html" hreflang="en" lang="en" aria-label="Read this page in English">English</a></li>
+</ul>
+</nav>
+</div>
+</header>
+<main id="main" tabindex="-1">
+<div class="wrap">
+<article>
+<h1>Word per Mac dichiara la lingua sbagliata nel PDF</h1>
+<p class="meta">Test svolto a ottobre 2026 su macOS 27.</p>
+<p class="lead">Microsoft Word per Mac sa produrre un ottimo PDF accessibile. Nel nostro test ha fatto quasi tutto bene, tranne un dettaglio facile da non notare: ha dichiarato la lingua sbagliata.</p>
+
+<h2>Come abbiamo fatto il test</h2>
+<p>Abbiamo scritto in italiano un documento di esempio fittizio con titoli, un elenco puntato, una tabella con riga di intestazione, due immagini (una con testo alternativo, una senza) e un link. L’interfaccia di Word era in inglese. Lo abbiamo salvato in PDF in tre modi diversi ed esaminato ogni file con PDF Accessibility Checker, con veraPDF e leggendo direttamente la struttura del PDF. I risultati riguardano questo esempio, questa versione di Word e macOS 27; i tuoi risultati potrebbero essere diversi.</p>
+
+<h2>La buona notizia: un ottimo PDF con tag</h2>
+<p>Con File &gt; Salva con nome &gt; PDF e l’opzione “Ottimale per la distribuzione elettronica e l’accessibilità”, Word ha prodotto un PDF con tag ben strutturato:</p>
+<ul>
+<li>un tag Document che contiene titoli H1 e H2;</li>
+<li>un vero elenco, con i tag L, LI, Lbl e LBody;</li>
+<li>una vera tabella, con Table, THead, TBody, TR, TH e TD;</li>
+<li>tag Figure per le immagini;</li>
+<li>metadati XMP con il titolo (dc:title) e l’impostazione DisplayDocTitle, così i lettori PDF mostrano il titolo al posto del nome del file.</li>
+</ul>
+<p>I problemi rimasti erano piccoli e previsti: l’immagine senza testo alternativo (segnalata correttamente, perché l’avevamo omesso di proposito), le celle di intestazione della tabella (TH) senza l’attributo Scope e l’assenza dell’identificativo PDF/UA nei metadati.</p>
+<p>Tieni presente che questa opzione usa il servizio online di Microsoft per creare il PDF: il documento viene quindi elaborato fuori dal tuo Mac. Valuta questo aspetto per i documenti riservati.</p>
+
+<h2>Il problema: Lang = “en” per un documento italiano</h2>
+<p>Il PDF dichiarava come lingua l’inglese (Lang = “en”), anche se ogni parola era in italiano. La lingua dichiarata corrispondeva a quella dell’interfaccia di Word, non a quella del documento.</p>
+<p>Perché conta? Gli screen reader usano la lingua dichiarata per scegliere la voce e le regole di pronuncia. Un testo italiano letto con le regole dell’inglese diventa difficile o impossibile da capire. Anche i display braille e gli strumenti di traduzione si basano sulla lingua. E poiché il PDF una lingua la dichiara, un controllo di base che verifica soltanto “c’è una lingua?” non segnala alcun problema.</p>
+
+<h2>Le altre opzioni di esportazione non sono accessibili</h2>
+<ul>
+<li><strong>“Ottimale per la stampa”</strong> ha prodotto un PDF senza alcun tag.</li>
+<li><strong>File &gt; Stampa &gt; Salva come PDF</strong> (il pannello di stampa di macOS) ha prodotto anch’esso un PDF senza tag. In più ha scritto il nome dell’utente del Mac nel campo Autore del PDF, cosa che forse non desideri in un documento pubblicato.</li>
+</ul>
+
+<h2>Come correggere in Word</h2>
+<ol>
+<li>Seleziona tutto il testo (Comando-A) e scegli Strumenti &gt; Lingua. Seleziona la lingua corretta del documento e conferma.</li>
+<li>Se il documento contiene passaggi in altre lingue, selezionali uno per uno e imposta la loro lingua allo stesso modo.</li>
+<li>Imposta il titolo in File &gt; Proprietà.</li>
+<li>Salva di nuovo con File &gt; Salva con nome &gt; PDF e “Ottimale per la distribuzione elettronica e l’accessibilità”.</li>
+<li>Controlla il risultato.</li>
+</ol>
+
+<h2>Come l’app rileva la differenza</h2>
+<p>PDF Accessibility Checker confronta la lingua dichiarata con la lingua del testo. Prende un campione di pagine, ne estrae il testo e chiede al framework NaturalLanguage di Apple di quale lingua si tratti. Segnala una differenza solo quando il riconoscimento ha un’alta affidabilità e c’è abbastanza testo per giudicare: un documento con poche parole, o che mescola le lingue in parti uguali, non viene segnalato. Quando trova una differenza mostra un avviso come “La lingua dichiarata non è la lingua del testo”.</p>
+
+<h2>Come ti aiuta PDF Accessibility Checker</h2>
+<p>L’app trova la lingua sbagliata che altri controlli non vedono e spiega come correggerla in Word. Con Pro può anche impostare la lingua al posto tuo: propone la lingua rilevata dal testo, la scrive in un nuovo file chiamato <code>nome-accessible.pdf</code> accanto all’originale e controlla di nuovo il nuovo file. Può anche rimuovere autore e metadati del documento, come il nome dell’autore aggiunto dal pannello di stampa. <a href="index.html">Scopri PDF Accessibility Checker</a>.</p>
+</article>
+</div>
+</main>
+<footer class="site-footer">
+<div class="wrap">
+<p class="disclaimer">PDF Accessibility Checker aiuta a controllare l'accessibilità dei file PDF. Non certifica la conformità legale a nessuna norma o standard.</p>
+<p><a href="privacy.html">Informativa sulla privacy</a> · <a href="support.html">Supporto e domande frequenti</a></p>
+<p>© 2026 Corrado Lagioni.</p>
+</div>
+</footer>
+</body>
+</html>

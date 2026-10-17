@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Perché il PDF esportato da Pages non è accessibile</title>
+<meta name="description" content="Pages per Mac esporta un PDF con tag se l'accessibilità è attiva, ma i tag non sono collegati al contenuto e i titoli diventano spesso semplici paragrafi. Risultati dei test e soluzioni.">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="../style.css">
+<link rel="alternate" hreflang="en" href="../pages-pdf-accessibility.html">
+<link rel="alternate" hreflang="it" href="pages-pdf-accessibility.html">
+<link rel="alternate" hreflang="x-default" href="../pages-pdf-accessibility.html">
+</head>
+<body>
+<a class="skip" href="#main">Vai al contenuto principale</a>
+<header class="site-header">
+<div class="wrap header-inner">
+<a class="brand" href="index.html">PDF Accessibility Checker</a>
+<nav aria-label="Principale">
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="guide.html">Guida</a></li>
+<li><a href="articles.html" aria-current="page">Articoli</a></li>
+<li><a href="support.html">Supporto</a></li>
+<li><a href="privacy.html">Privacy</a></li>
+<li class="lang"><a href="../pages-pdf-accessibility.html" hreflang="en" lang="en" aria-label="Read this page in English">English</a></li>
+</ul>
+</nav>
+</div>
+</header>
+<main id="main" tabindex="-1">
+<div class="wrap">
+<article>
+<h1>Perché il PDF esportato da Pages non è accessibile</h1>
+<p class="meta">Test svolto a ottobre 2026 su macOS 27.</p>
+<p class="lead">Pages ha un’opzione Accessibilità nell’esportazione in PDF e, quando è attiva, il file contiene davvero dei tag. Eppure i validatori di accessibilità segnalano l’intero documento come privo di tag. Ecco che cosa abbiamo trovato, perché conta e che cosa puoi fare.</p>
+
+<h2>Come abbiamo fatto il test</h2>
+<p>Abbiamo creato un documento di esempio fittizio con titoli, un elenco puntato, una tabella con riga di intestazione, due immagini (una con descrizione, una senza) e un link. Lo abbiamo esportato da Pages con File &gt; Esporta come &gt; PDF, provando tutti i valori dell’opzione Accessibilità, e abbiamo esaminato i file ottenuti con PDF Accessibility Checker, con veraPDF e leggendo direttamente la struttura del PDF. Abbiamo provato sia un documento creato da un modello nativo di Pages sia un documento aperto da un file Word .docx. I risultati descrivono questo esempio su questa versione di macOS; altri documenti o versioni successive di Pages potrebbero comportarsi diversamente.</p>
+
+<h2>Che cosa produce Pages</h2>
+<p>Con l’opzione Accessibilità attiva, Pages scrive un PDF con tag: il file contiene un albero della struttura, cioè l’elenco dei tag che dovrebbe dire allo screen reader che cosa è ciascun contenuto. Fin qui tutto bene. I problemi stanno nei dettagli.</p>
+
+<h3>1. I tag non sono collegati al contenuto</h3>
+<p>In un PDF con tag ogni tag deve puntare al testo e alle immagini che descrive, e il contenuto della pagina deve puntare a sua volta al proprio tag. Questo secondo collegamento passa da una tabella chiamata ParentTree. Nei nostri file esportati da Pages l’albero della struttura non aveva il ParentTree. Senza di esso il contenuto della pagina non è collegato ai tag e i validatori segnalano tutto il contenuto come privo di tag: veraPDF lo indica con la regola 7.1-3 di PDF/UA-1. Le tecnologie assistive che si basano su questo collegamento possono ignorare del tutto i tag.</p>
+
+<h3>2. Senza stili nativi, tutto diventa paragrafo</h3>
+<p>Quando il documento proveniva da un file .docx, o semplicemente non usava gli stili di paragrafo di Pages, titoli, elenco, tabella e immagini erano tutti marcati come P, un semplice paragrafo. Chi usa uno screen reader non troverebbe titoli per orientarsi, né elenco, né struttura della tabella, né alcuna indicazione delle immagini.</p>
+
+<h3>3. Modelli nativi: un titolo generico accanto a H1</h3>
+<p>Con un documento basato su un modello nativo di Pages la struttura era migliore: veri titoli, tag di elenco e di tabella. Ma il titolo principale era marcato come titolo generico H, accanto a titoli H1. Mescolare il tag generico H con titoli numerati non è ammesso da PDF/UA (regola 7.4.4-2 di veraPDF).</p>
+
+<h3>4. Né lingua né titolo</h3>
+<p>Nessuno dei file dichiarava la lingua del documento e nessuno aveva un titolo nei metadati XMP. Mancava anche l’impostazione DisplayDocTitle, che dice ai lettori PDF di mostrare il titolo al posto del nome del file. Senza lingua, uno screen reader può leggere un testo italiano con la voce inglese. Senza titolo, si sente un nome di file come “Documento 3 definitivo.pdf”.</p>
+
+<h3>Opzione predefinita e opzione disattivata</h3>
+<p>Per il nostro piccolo documento, il valore predefinito dell’opzione Accessibilità ha dato lo stesso risultato dell’opzione attiva. Con l’opzione disattivata il PDF non conteneva alcun tag.</p>
+
+<h2>Che cosa puoi fare</h2>
+<ul>
+<li><strong>Per i documenti che devono essere accessibili, esporta con un altro strumento.</strong> Nei nostri test l’esportazione accessibile di Microsoft Word ha prodotto un PDF con tag ben strutturato (vedi <a href="word-pdf-wrong-language.html">il nostro test di Word</a>, che descrive anche un problema da tenere d’occhio). Per i documenti impaginati c’è Adobe InDesign.</li>
+<li><strong>Oppure correggi il PDF con un editor PDF</strong> in grado di ricostruire la struttura, come uno strumento di remediation dedicato.</li>
+<li><strong>Se resti su Pages, usa i suoi stili di paragrafo</strong> per titolo, titoli di sezione ed elenchi, e lascia attiva l’opzione Accessibilità. Non risolve il collegamento mancante tra tag e contenuto, ma offre un punto di partenza migliore per la correzione.</li>
+<li><strong>Imposta lingua e titolo in un secondo momento.</strong> Pages non ha impostazioni per farlo; vedi <a href="set-pdf-language-title-mac.html">come impostare lingua e titolo di un PDF su Mac</a>.</li>
+</ul>
+
+<h2>Come ti aiuta PDF Accessibility Checker</h2>
+<p>PDF Accessibility Checker ti mostra ciascuno di questi problemi in parole semplici: contenuto non collegato ai tag, titoli marcati come paragrafi, il titolo generico H, lingua e titolo mancanti. La vista Screen reader ti fa vedere subito che un’esportazione di Pages si legge come una sequenza piatta di paragrafi. Con Pro l’app può impostare la lingua del documento (proposta dal testo) e il titolo con DisplayDocTitle, salvando il risultato in un nuovo file accanto all’originale. Non può ricostruire una struttura mancante: per questo serve esportare di nuovo da un altro programma o usare un editor PDF. <a href="index.html">Scopri PDF Accessibility Checker</a>.</p>
+</article>
+</div>
+</main>
+<footer class="site-footer">
+<div class="wrap">
+<p class="disclaimer">PDF Accessibility Checker aiuta a controllare l'accessibilità dei file PDF. Non certifica la conformità legale a nessuna norma o standard.</p>
+<p><a href="privacy.html">Informativa sulla privacy</a> · <a href="support.html">Supporto e domande frequenti</a></p>
+<p>© 2026 Corrado Lagioni.</p>
+</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guide – PDF Accessibility Checker</title>
+<meta name="description" content="How to use PDF Accessibility Checker on Mac: open PDFs, read the summary and the problems, use the screen reader view, manual checks, fixes, report export and the Finder Quick Action.">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="style.css">
+<link rel="alternate" hreflang="en" href="guide.html">
+<link rel="alternate" hreflang="it" href="it/guide.html">
+<link rel="alternate" hreflang="x-default" href="guide.html">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="site-header">
+<div class="wrap header-inner">
+<a class="brand" href="index.html">PDF Accessibility Checker</a>
+<nav aria-label="Main">
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="guide.html" aria-current="page">Guide</a></li>
+<li><a href="articles.html">Articles</a></li>
+<li><a href="support.html">Support</a></li>
+<li><a href="privacy.html">Privacy</a></li>
+<li class="lang"><a href="it/guide.html" hreflang="it" lang="it" aria-label="Leggi questa pagina in italiano">Italiano</a></li>
+</ul>
+</nav>
+</div>
+</header>
+<main id="main" tabindex="-1">
+<div class="wrap">
+<h1>How to use PDF Accessibility Checker</h1>
+<p class="lead">This guide walks you through a typical check, from opening a file to exporting a report.</p>
+
+<h2>1. Open one or more PDFs</h2>
+<p>Choose File &gt; Open (<kbd>Command</kbd>-<kbd>O</kbd>) or drag PDF files onto the app window. In the free version the app checks one file at a time. With Pro you can drop several files or whole folders: the app checks them all and shows a summary for each file in the sidebar.</p>
+
+<h2>2. Read the summary</h2>
+<p>At the top of the window you see a short summary such as “12 errors in 4 categories”, followed by the number of errors, warnings and items to review, and the number of pages. The results use three levels:</p>
+<ul>
+<li><span class="level-error">Error</span> – blocks some users;</li>
+<li><span class="level-warning">Warning</span> – makes the document harder to use or is very likely wrong;</li>
+<li><span class="level-review">Needs review</span> – the app cannot be sure and asks you to look. It never reports a pass when it is not sure.</li>
+</ul>
+<p>Automatic checks find many problems, not all of them. A clean result is not a certificate of legal conformance.</p>
+
+<h2>3. Select a problem</h2>
+<p>In the Problems view, select a problem in the list. The app shows:</p>
+<ul>
+<li>what the problem means and who it affects, in plain language;</li>
+<li>where it is: the location is highlighted on the page preview;</li>
+<li>how to fix it in the original document, with instructions for Microsoft Word, Pages and Adobe InDesign;</li>
+<li>a Fix button, if the app can fix the problem automatically (Pro).</li>
+</ul>
+
+<h2>4. Screen Reader tab</h2>
+<p>The Screen Reader view shows the text in the order of the tags, as a screen reader reads it: headings with their level, lists, tables and the alternative text of each image. Images without alternative text are clearly marked. Choose Read Aloud to hear the text.</p>
+
+<h2>5. Manual Checks tab</h2>
+<p>Some checks need a human judgement: whether the alternative text describes each image, whether the reading order is logical, whether text has enough contrast, whether color is the only way information is given. The Manual Checks view lists them; for alternative text, it shows the images one by one next to their descriptions. Items count as “needs review” until you answer.</p>
+
+<h2>6. Fix (Pro)</h2>
+<p>Choose Fix to apply the available automatic fixes: document language (proposed from the text), title and DisplayDocTitle, repair of invalid XMP metadata and removal of the author and document metadata. The result is saved as a new file, <code>name-accessible.pdf</code>, next to the original; the original is never overwritten. The new file is checked again automatically.</p>
+
+<h2>7. Export a report (Pro)</h2>
+<p>Choose Export Report to save the results as an accessible tagged PDF, to share with colleagues or clients, or as a CSV file to open in a spreadsheet.</p>
+
+<h2>8. Finder Quick Action (Pro)</h2>
+<p>You can check a PDF without opening the app first: right-click a PDF in the Finder and choose Quick Actions &gt; Check Accessibility. If the action does not appear, enable it in System Settings &gt; General &gt; Login Items &amp; Extensions &gt; Finder (the exact wording can vary slightly between macOS versions).</p>
+
+<h2>Keyboard shortcuts</h2>
+<div class="table-wrap">
+<table>
+<caption>Keyboard shortcuts</caption>
+<thead><tr><th scope="col">Shortcut</th><th scope="col">Action</th></tr></thead>
+<tbody>
+<tr><td><kbd>Command</kbd>-<kbd>O</kbd></td><td>Open a PDF</td></tr>
+<tr><td><kbd>Command</kbd>-<kbd>1</kbd></td><td>Show the Problems view</td></tr>
+<tr><td><kbd>Command</kbd>-<kbd>2</kbd></td><td>Show the Screen Reader view</td></tr>
+<tr><td><kbd>Command</kbd>-<kbd>3</kbd></td><td>Show the Manual Checks view</td></tr>
+<tr><td><kbd>Command</kbd>-<kbd>Left Arrow</kbd></td><td>Previous image in the alternative text review</td></tr>
+<tr><td><kbd>Command</kbd>-<kbd>Right Arrow</kbd></td><td>Next image in the alternative text review</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</main>
+<footer class="site-footer">
+<div class="wrap">
+<p class="disclaimer">PDF Accessibility Checker helps you check the accessibility of PDF files. It does not certify legal conformance with any law or standard.</p>
+<p><a href="privacy.html">Privacy policy</a> · <a href="support.html">Support and FAQ</a></p>
+<p>© 2026 Corrado Lagioni.</p>
+</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why the PDF from Pages is not accessible</title>
+<meta name="description" content="Pages for Mac exports a tagged PDF with Accessibility On, but the tags are not linked to the content and headings often become plain paragraphs. Test results and fixes.">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="style.css">
+<link rel="alternate" hreflang="en" href="pages-pdf-accessibility.html">
+<link rel="alternate" hreflang="it" href="it/pages-pdf-accessibility.html">
+<link rel="alternate" hreflang="x-default" href="pages-pdf-accessibility.html">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="site-header">
+<div class="wrap header-inner">
+<a class="brand" href="index.html">PDF Accessibility Checker</a>
+<nav aria-label="Main">
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="guide.html">Guide</a></li>
+<li><a href="articles.html" aria-current="page">Articles</a></li>
+<li><a href="support.html">Support</a></li>
+<li><a href="privacy.html">Privacy</a></li>
+<li class="lang"><a href="it/pages-pdf-accessibility.html" hreflang="it" lang="it" aria-label="Leggi questa pagina in italiano">Italiano</a></li>
+</ul>
+</nav>
+</div>
+</header>
+<main id="main" tabindex="-1">
+<div class="wrap">
+<article>
+<h1>Why the PDF from Pages is not accessible</h1>
+<p class="meta">Tested in October 2026 on macOS 27.</p>
+<p class="lead">Pages has an Accessibility option in its PDF export, and with it turned on the file does contain tags. Yet accessibility validators report the whole document as untagged. Here is what we found, why it matters and what you can do.</p>
+
+<h2>How we tested</h2>
+<p>We created a fictitious sample document with headings, a bulleted list, a table with a header row, two images (one with a description, one without) and a link. We exported it from Pages with File &gt; Export To &gt; PDF, trying each value of the Accessibility setting, and inspected the resulting files with PDF Accessibility Checker, with veraPDF and by reading the PDF structure directly. We tested both a document created from a native Pages template and a document opened from a Word .docx file. The results describe this sample on this macOS version; other documents or later versions of Pages may behave differently.</p>
+
+<h2>What Pages produces</h2>
+<p>With Accessibility set to “On”, Pages writes a tagged PDF: the file contains a structure tree, the list of tags that should tell a screen reader what each piece of content is. So far, so good. The problems are in the details.</p>
+
+<h3>1. The tags are not linked to the content</h3>
+<p>In a tagged PDF, every tag must point to the text and images it describes, and the page content must point back to its tag. The second link goes through a table called the ParentTree. In our files from Pages the structure tree had no ParentTree. Without it, the content on the page is not connected to the tags, and validators report all content as untagged: veraPDF flags this under rule 7.1-3 of PDF/UA-1. Assistive technology that relies on this link may ignore the tags altogether.</p>
+
+<h3>2. Without native styles, everything becomes a paragraph</h3>
+<p>When the document came from a .docx file, or simply did not use Pages’ own paragraph styles, the headings, the list, the table and the images were all tagged as P, a plain paragraph. A screen reader user would hear no headings to navigate by, no list, no table structure, and no indication of the images.</p>
+
+<h3>3. Native templates: a generic heading next to H1</h3>
+<p>With a document built on a native Pages template the structure was better: real headings, list and table tags. But the main title was tagged as a generic H heading, alongside H1 headings. Mixing the generic H with numbered headings is not allowed by PDF/UA (veraPDF rule 7.4.4-2).</p>
+
+<h3>4. No language, no title</h3>
+<p>None of the files declared a document language, and none had a title in the XMP metadata. The DisplayDocTitle setting, which tells PDF viewers to show the title instead of the file name, was missing too. Without a language, a screen reader may read Italian text with an English voice, or the other way round. Without a title, people hear a file name such as “Document 3 final.pdf”.</p>
+
+<h3>Default and Off</h3>
+<p>For our small document, Accessibility “Default” gave the same result as “On”. Accessibility “Off” produced no tags at all.</p>
+
+<h2>What you can do</h2>
+<ul>
+<li><strong>For documents that must be accessible, use another tool for the export.</strong> In our tests, Microsoft Word’s accessible export produced a well-structured tagged PDF (see <a href="word-pdf-wrong-language.html">our Word test</a>, which also covers one problem to watch for). Adobe InDesign is another option for designed documents.</li>
+<li><strong>Or fix the PDF in a PDF editor</strong> that can rebuild the structure, such as a dedicated remediation tool.</li>
+<li><strong>If you stay with Pages, use its paragraph styles</strong> for titles, headings and lists, and keep Accessibility “On”. This does not solve the missing link between tags and content, but it gives a better starting point for remediation.</li>
+<li><strong>Set the language and the title afterwards.</strong> Pages has no setting for them; see <a href="set-pdf-language-title-mac.html">how to set the language and title of a PDF on Mac</a>.</li>
+</ul>
+
+<h2>How PDF Accessibility Checker helps</h2>
+<p>PDF Accessibility Checker shows you each of these problems in plain language: content not linked to tags, headings tagged as paragraphs, the generic H heading, the missing language and title. The Screen Reader view lets you see at a glance that a Pages export reads as a flat sequence of paragraphs. With Pro, the app can set the document language (proposed from the text) and the title with DisplayDocTitle, saving the result as a new file next to the original. It cannot rebuild a missing structure: for that, export again from another program or use a PDF editor. <a href="index.html">Learn more about PDF Accessibility Checker</a>.</p>
+</article>
+</div>
+</main>
+<footer class="site-footer">
+<div class="wrap">
+<p class="disclaimer">PDF Accessibility Checker helps you check the accessibility of PDF files. It does not certify legal conformance with any law or standard.</p>
+<p><a href="privacy.html">Privacy policy</a> · <a href="support.html">Support and FAQ</a></p>
+<p>© 2026 Corrado Lagioni.</p>
+</div>
+</footer>
+</body>
+</html>
