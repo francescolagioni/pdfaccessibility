@@ -122,7 +122,6 @@ figcaption { color: var(--muted); font-size: 0.95rem; margin-top: 0.4rem; }
 .note > :last-child { margin-bottom: 0; }
 .note h2, .note h3 { margin-top: 0; }
 
-.placeholder { font-style: italic; color: var(--muted); }
 
 /* Tables */
 .table-wrap { overflow-x: auto; margin-bottom: 1rem; }
